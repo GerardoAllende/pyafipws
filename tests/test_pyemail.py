@@ -24,7 +24,7 @@ from email.mime.application import MIMEApplication
 from email.mime.multipart import MIMEMultipart
 import sys, os
 import smtplib
-from configparser import SafeConfigParser
+from six.moves import configparser as SafeConfigParser
 
 pytestmark = [pytest.mark.dontusefix]
 
@@ -46,7 +46,7 @@ def test_Connectar_Enviar(mocker):
         conf_mail["remitente"], "prueba", "check@gmail.com", None
     )
 
-    pyemail.Salir() 
+    pyemail.Salir()
 
     smtplib.SMTP.assert_called_with(conf_mail["servidor"], 25)
 

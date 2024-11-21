@@ -34,7 +34,7 @@ http://www.sistemasagiles.com.ar/trac/wiki/PyAfipWs
 """
 
 AYUDA="""
-Opciones: 
+Opciones:
   --ayuda: este mensaje
 
   --debug: modo depuración (detalla y confirma las operaciones)
@@ -94,7 +94,7 @@ ENCABEZADO = [
     ('tipo_reg', 1, A), # 0: encabezado carta de porte
 
     ('tipo_cpe', 3, N),  # 74: CPE Automotor, 75: CPE Ferroviaria,  99: Flete Corto.
-    
+
     ('sucursal', 5, N),
     ('nro_orden', 8, N),
     ('planta', 6, N),
@@ -119,10 +119,10 @@ ENCABEZADO = [
 ORIGEN = [
     ('tipo_reg', 1, A), # O: Origen
     ('cod_provincia_operador', 2, N),
-    ('cod_localidad_operador', 6, N), 
+    ('cod_localidad_operador', 6, N),
     ('planta', 6, N),
     ('cod_provincia_productor', 2, N),
-    ('cod_localidad_productor', 6, N), 
+    ('cod_localidad_productor', 6, N),
     ]
 
 INTERVINIENTES = [
@@ -195,14 +195,14 @@ CONTINGENCIA = [
 
 EVENTO = [
     ('tipo_reg', 1, A), # E: Evento
-    ('codigo', 4, A), 
-    ('descripcion', 250, A), 
+    ('codigo', 4, A),
+    ('descripcion', 250, A),
     ]
-    
+
 ERROR = [
     ('tipo_reg', 1, A), # R: Error
-    ('codigo', 4, A), 
-    ('descripcion', 250, A), 
+    ('codigo', 4, A),
+    ('descripcion', 250, A),
     ]
 
 FORMATOS = {
@@ -303,10 +303,10 @@ if __name__ == '__main__':
                 comienzo += longitud
         sys.exit(0)
 
-    from ConfigParser import SafeConfigParser
+    from six.moves import configparser as SafeConfigParser
 
     try:
-    
+
         for arg in sys.argv[1:]:
             if arg.startswith("--"):
                 break
@@ -320,7 +320,7 @@ if __name__ == '__main__':
         CUIT = config.get('WSCPE','CUIT')
         ENTRADA = config.get('WSCPE','ENTRADA')
         SALIDA = config.get('WSCPE','SALIDA')
-        
+
         if config.has_option('WSAA','URL') and not HOMO:
             wsaa_url = config.get('WSAA','URL')
         else:
@@ -359,7 +359,7 @@ if __name__ == '__main__':
         wscpe.SetTicketAcceso(ta)
         wscpe.Cuit = CUIT
         ok = None
-        
+
         if '--dummy' in sys.argv:
             ret = wscpe.Dummy()
             print("AppServerStatus", wscpe.AppServerStatus)
@@ -673,7 +673,7 @@ if __name__ == '__main__':
             print("Errores:", wscpe.Errores)
 
         print("hecho.")
-        
+
     except SoapFault as e:
         print("Falla SOAP:", e.faultcode, e.faultstring)
         sys.exit(3)

@@ -47,7 +47,7 @@ http://www.sistemasagiles.com.ar/trac/wiki/PyAfipWs
 """
 
 AYUDA = u"""
-Opciones: 
+Opciones:
   --ayuda: este mensaje
   --licencia: muestra la licencia del programa
 
@@ -1709,7 +1709,7 @@ INSTALL_DIR = os.path.dirname(os.path.abspath(basepath))
 
 def main():
     global CONFIG_FILE, DEBUG, HOMO
-    
+
     if "--register" in sys.argv or "--unregister" in sys.argv:
         import win32com.server.register
 
@@ -1722,12 +1722,12 @@ def main():
         # start the server.
         win32com.server.localserver.serve([FEPDF._reg_clsid_])
     else:
-        from pyafipws.utils import SafeConfigParser
+        from six.moves import configparser as SafeConfigParser
 
         DEBUG = "--debug" in sys.argv
         utils.safe_console()
 
-        # leeo configuración (primer argumento o rece.ini por defecto)
+        # leo configuración (primer argumento o rece.ini por defecto)
         if len(sys.argv) > 1 and not sys.argv[1].startswith("--"):
             CONFIG_FILE = sys.argv.pop(1)
         if DEBUG:

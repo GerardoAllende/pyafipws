@@ -34,7 +34,7 @@ from email.mime.application import MIMEApplication
 from email.mime.multipart import MIMEMultipart
 import sys, os
 import smtplib
-from configparser import SafeConfigParser
+from six.moves import configparser as SafeConfigParser
 
 
 DEBUG = False

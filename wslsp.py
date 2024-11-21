@@ -19,7 +19,7 @@ standard_library.install_aliases()
 from builtins import str
 from builtins import input
 
-"""Módulo para obtener código de autorización electrónica (CAE) para 
+"""Módulo para obtener código de autorización electrónica (CAE) para
 Liquidación Sector Pecuario (hacienda/carne) del web service WSLSP de AFIP
 """
 
@@ -43,7 +43,7 @@ http://www.sistemasagiles.com.ar/trac/wiki/PyAfipWs
 """
 
 AYUDA = """
-Opciones: 
+Opciones:
   --ayuda: este mensaje
 
   --debug: modo depuración (detalla y confirma las operaciones)
@@ -52,16 +52,16 @@ Opciones:
   --xml: almacena los requerimientos y respuestas XML (depuración)
   --json: utilizar formato json para el archivo de intercambio
   --dummy: consulta estado de servidores
-  
+
   --autorizar: Autorizar Liquidación Única (generarLiquidacion)
   --ajustar: Ajuste Físico/Monetario/Financiero, Credito/Debito (generarAjuste)
-  --ult: Consulta el último número de orden registrado en AFIP 
+  --ult: Consulta el último número de orden registrado en AFIP
          (consultarUltimoComprobanteXPuntoVenta)
-  --consultar: Consulta una liquidación registrada en AFIP 
+  --consultar: Consulta una liquidación registrada en AFIP
          (consultarLiquidacionXNroComprobante / consultarLiquidacionXCAE)
 
   --provincias: obtiene el listado de provincias (código/descripción)
-  --localidades: obtiene el listado de localidades para una provincia 
+  --localidades: obtiene el listado de localidades para una provincia
   --tributos: obtiene el listado de los tipos de tributos
   --gastos: obtiene el listado de los tipos de gastos
   --puntosventa: obtiene el listado de puntos de venta habilitados
@@ -1075,7 +1075,7 @@ def main():
         sys.exit(0)
 
     import csv
-    from configparser import SafeConfigParser
+    from six.moves import configparser as SafeConfigParser
 
     from pyafipws.wsaa import WSAA
 

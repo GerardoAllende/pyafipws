@@ -41,7 +41,7 @@ http://www.sistemasagiles.com.ar/trac/wiki/PyAfipWs
 """
 
 AYUDA = """
-Opciones: 
+Opciones:
   --ayuda: este mensaje
 
   --debug: modo depuración (detalla y confirma las operaciones)
@@ -65,8 +65,8 @@ Opciones:
   --consultar_constancia_pdf: descarga el documento PDF de una CTG
   --pendientes: consulta CTGs otorgados, rechazados, confirmados a resolver
   --consultar_rechazados: obtener CTGs rechazados para darles un nuevo curso
-  --consultar_activos_por_patente: consulta de CTGs activos por patente 
-  
+  --consultar_activos_por_patente: consulta de CTGs activos por patente
+
   --provincias: obtiene el listado de provincias
   --localidades: obtiene el listado de localidades por provincia
   --especies: obtiene el listado de especies
@@ -1051,7 +1051,7 @@ def main():
         sys.exit(0)
 
     import csv
-    from configparser import SafeConfigParser
+    from six.moves import configparser as SafeConfigParser
 
     try:
 

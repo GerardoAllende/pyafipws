@@ -19,7 +19,7 @@ standard_library.install_aliases()
 from builtins import input
 from builtins import str
 
-"""Módulo para obtener código de autorización electrónica (CAE) para 
+"""Módulo para obtener código de autorización electrónica (CAE) para
 Liquidación Única Mensual (lechería) del web service WSLUM de AFIP
 """
 
@@ -43,7 +43,7 @@ http://www.sistemasagiles.com.ar/trac/wiki/PyAfipWs
 """
 
 AYUDA = """
-Opciones: 
+Opciones:
   --ayuda: este mensaje
 
   --debug: modo depuración (detalla y confirma las operaciones)
@@ -52,11 +52,11 @@ Opciones:
   --xml: almacena los requerimientos y respuestas XML (depuración)
   --json: utilizar formato json para el archivo de intercambio
   --dummy: consulta estado de servidores
-  
+
   --autorizar: Autorizar Liquidación Única Mensual (lechería) (generarLiquidacion)
-  --ult: Consulta el último número de orden registrado en AFIP 
+  --ult: Consulta el último número de orden registrado en AFIP
          (consultarUltimoComprobanteXPuntoVenta)
-  --consultar: Consulta una liquidación registrada en AFIP 
+  --consultar: Consulta una liquidación registrada en AFIP
          (consultarLiquidacionXNroComprobante / consultarLiquidacionXCAE)
 
   --pdf: descarga la liquidación en formato PDF
@@ -64,7 +64,7 @@ Opciones:
   --imprimir: imprime el documento PDF generado (usar con --mostrar y --pdf)
 
   --provincias: obtiene el listado de provincias (código/descripción)
-  --localidades: obtiene el listado de localidades para una provincia 
+  --localidades: obtiene el listado de localidades para una provincia
   --bonificaciones_penalizaciones: obtiene el listado de tributos
   --otros_impuestos: obtiene el listado de las retenciones de tabaco
   --puntosventa: obtiene el listado de puntos de venta habilitados
@@ -821,7 +821,7 @@ def main():
         sys.exit(0)
 
     import csv
-    from configparser import SafeConfigParser
+    from six.moves import configparser as SafeConfigParser
 
     from pyafipws.wsaa import WSAA
 

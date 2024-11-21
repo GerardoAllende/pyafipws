@@ -43,7 +43,7 @@ http://www.sistemasagiles.com.ar/trac/wiki/PyAfipWs
 """
 
 AYUDA = """
-Opciones: 
+Opciones:
   --ayuda: este mensaje
 
   --debug: modo depuración (detalla y confirma las operaciones)
@@ -92,7 +92,7 @@ from pyafipws.utils import (
 WSDL = [
     "https://fwshomo.afip.gov.ar/wsremcarne/RemCarneService?wsdl",
     "https://serviciosjava.afip.gob.ar/wsremcarne/RemCarneService?wsdl",
-    
+
 ]
 
 DEBUG = False
@@ -658,7 +658,7 @@ def main():
         win32com.server.register.UseCommandLine(WSRemCarne)
         sys.exit(0)
 
-    from configparser import SafeConfigParser
+    from six.moves import configparser as SafeConfigParser
 
     try:
 

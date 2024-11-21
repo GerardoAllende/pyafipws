@@ -18,7 +18,7 @@ from future import standard_library
 standard_library.install_aliases()
 from builtins import str
 
-"""Módulo para obtener código de autorización electrónica (CAE) para 
+"""Módulo para obtener código de autorización electrónica (CAE) para
 Liquidación de Tabaco Verde del web service WSLTV de AFIP
 """
 
@@ -42,7 +42,7 @@ http://www.sistemasagiles.com.ar/trac/wiki/PyAfipWs
 """
 
 AYUDA = """
-Opciones: 
+Opciones:
   --ayuda: este mensaje
 
   --debug: modo depuración (detalla y confirma las operaciones)
@@ -52,12 +52,12 @@ Opciones:
   --dbf: utilizar tablas DBF (xBase) para los archivos de intercambio
   --json: utilizar formato json para el archivo de intercambio
   --dummy: consulta estado de servidores
-  
+
   --autorizar: Autorizar Liquidación de Tabaco Verde (generarLiquidacion)
   --ajustar: Ajustar (ajustarLiquidacion/generarAjusteFisico)
-  --ult: Consulta el último número de orden registrado en AFIP 
+  --ult: Consulta el último número de orden registrado en AFIP
          (consultarUltimoComprobanteXPuntoVenta)
-  --consultar: Consulta una liquidación registrada en AFIP 
+  --consultar: Consulta una liquidación registrada en AFIP
          (consultarLiquidacionXNroComprobante / consultarLiquidacionXCAE)
 
   --pdf: descarga la liquidación en formato PDF
@@ -886,7 +886,7 @@ def main():
         sys.exit(0)
 
     import csv
-    from configparser import SafeConfigParser
+    from six.moves import configparser as SafeConfigParser
 
     from pyafipws.wsaa import WSAA
 

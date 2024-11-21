@@ -54,10 +54,8 @@ from html.parser import HTMLParser
 from http.cookies import SimpleCookie
 
 try:
-    from ConfigParser import SafeConfigParser
+    from six.moves import configparser as SafeConfigParser
 except ImportError:
-    # python3 workaround to read config files not in utf8
-    from configparser import ConfigParser as SafeConfigParser
     import codecs
 
     SafeConfigParser.read = lambda self, filename: self.read_file(

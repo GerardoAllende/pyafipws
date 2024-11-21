@@ -10,7 +10,7 @@
 # or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public License
 # for more details.
 
-"""Módulo para obtener código de operación electrónico (COE) para 
+"""Módulo para obtener código de operación electrónico (COE) para
 Liquidación Primaria Electrónica de Granos del web service WSLPG de AFIP
 """
 from __future__ import print_function
@@ -44,7 +44,7 @@ http://www.sistemasagiles.com.ar/trac/wiki/PyAfipWs
 """
 
 AYUDA = """
-Opciones: 
+Opciones:
   --ayuda: este mensaje
 
   --debug: modo depuración (detalla y confirma las operaciones)
@@ -54,14 +54,14 @@ Opciones:
   --dbf: utilizar tablas DBF (xBase) para los archivos de intercambio
   --json: utilizar formato json para el archivo de intercambio
   --dummy: consulta estado de servidores
-  
+
   --autorizar: Autorizar Liquidación Primaria de Granos (liquidacionAutorizar)
   --ajustar: Ajustar Liquidación Primaria de Granos (liquidacionAjustar)
   --anular: Anular una Liquidación Primaria de Granos (liquidacionAnular)
   --autorizar-anticipo: Autoriza un Anticipo (lpgAutorizarAnticipo)
   --consultar: Consulta una liquidación (parámetros: nro de orden, COE, pdf)
     --cancelar-anticipo: anteponer para anticipos (lpgCancelarAnticipo)
-  --ult: Consulta el último número de orden registrado en AFIP 
+  --ult: Consulta el último número de orden registrado en AFIP
          (liquidacionUltimoNroOrdenConsultar)
 
   --pdf: genera el formulario C 1116 B en formato PDF
@@ -87,7 +87,7 @@ Opciones:
   --provincias: obtiene el listado de provincias
   --localidades: obtiene el listado de localidades por provincia
   --tipograno: obtiene el listado de los tipos de granos disponibles
-  --campanias: obtiene el listado de las campañas 
+  --campanias: obtiene el listado de las campañas
   --gradoref: obtiene el listado de los grados de referencias
   --gradoent: obtiene el listado de los grados y valores entregados
   --certdeposito: obtiene el listado de los tipos de certificados de depósito
@@ -95,7 +95,7 @@ Opciones:
   --retenciones: obtiene el listado de los tipos de retenciones
   --puertos: obtiene el listado de los puertos habilitados
   --actividades: obtiene el listado de las actividades habilitados
-  --actividadesrep: devuelve las actividades en las que emisor/representado 
+  --actividadesrep: devuelve las actividades en las que emisor/representado
                     se encuentra inscripto en RUOCA
   --operaciones: obtiene el listado de las operaciones para el representado
 
@@ -3946,7 +3946,7 @@ def main():
         sys.exit(0)
 
     import csv
-    from configparser import SafeConfigParser
+    from six.moves import configparser as SafeConfigParser
 
     from pyafipws.wsaa import WSAA
 

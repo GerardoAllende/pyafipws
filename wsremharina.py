@@ -43,7 +43,7 @@ http://www.sistemasagiles.com.ar/trac/wiki/PyAfipWs
 """
 
 AYUDA = """
-Opciones: 
+Opciones:
   --ayuda: este mensaje
 
   --debug: modo depuración (detalla y confirma las operaciones)
@@ -825,7 +825,7 @@ def main():
         win32com.server.register.UseCommandLine(WSRemHarina)
         sys.exit(0)
 
-    from configparser import SafeConfigParser
+    from six.moves import configparser as SafeConfigParser
 
     try:
 

@@ -24,7 +24,7 @@ from pyafipws.wsaa import WSAA
 from pyafipws.pyfepdf import FEPDF
 from pyafipws.pyfepdf import main
 from builtins import str
-from pyafipws.utils import SafeConfigParser
+from six.moves import configparser as SafeConfigParser
 import shutil
 
 
@@ -345,7 +345,7 @@ def test_main_grabar_json():
     diff = [x for x in d1 if x not in d2]
     assert diff == []
     os.remove('facturas.txt')
-    os.remove('facturas.json')  
+    os.remove('facturas.json')
 
 
 def test_mostrar_pdf(mocker):

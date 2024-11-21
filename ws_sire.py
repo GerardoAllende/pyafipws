@@ -10,7 +10,7 @@
 # or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public License
 # for more details.
 
-"""Módulo para emitir un certificado C2005 en AFIP mediante WebService (SOAP), 
+"""Módulo para emitir un certificado C2005 en AFIP mediante WebService (SOAP),
 por parte de los sistemas del agente de retención.
 """
 from __future__ import print_function
@@ -40,7 +40,7 @@ from pyafipws.utils import (
     SoapFault,
     SimpleXMLElement,
 )
-from configparser import SafeConfigParser
+from six.moves import configparser as SafeConfigParser
 
 
 HOMO = False
