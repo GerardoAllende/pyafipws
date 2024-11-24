@@ -32,6 +32,14 @@ HOMO = True
 
 import setuptools
 
+def read_requirements(file):
+    with open(file) as f:
+        return f.read().splitlines()
+
+def read_file(file):
+   with open(file) as f:
+        return f.read()
+
 kwargs = {}
 desc = (
     "Interfases, tools and apps for Argentina's gov't. webservices "
@@ -45,8 +53,8 @@ data_files = [("pyafipws/plantillas", glob.glob("plantillas/*"))]
 # convert the README and format in restructured text (only when registering)
 # from docs https://packaging.python.org/en/latest/guides/making-a-pypi-friendly-readme/
 parent_dir = os.getcwd()
-long_desc = open(os.path.join(parent_dir, "README.md")).read()
-
+long_desc = read_file(os.path.join(parent_dir, "README.md"))
+requirements =read_requirements('requirements.txt')
 setup(
     name="PyAfipWs",
     version=__version__,
@@ -57,21 +65,7 @@ setup(
     author_email="reingart@gmail.com",
     url="https://github.com/reingart/pyafipws",
     license="LGPL-3.0-or-later",
-    install_requires=[
-        "httplib2==0.9.2;python_version <= '2.7'",
-        "httplib2>=0.20.4;python_version > '3'",
-        "pysimplesoap==1.08.14;python_version <= '2.7'",
-        "pysimplesoap==1.8.22;python_version > '3'",
-        "cryptography==3.3.2;python_version <= '2.7'",
-        "cryptography>=3.4.7;python_version > '3'",
-        "fpdf>=1.7.2",
-        "dbf>=0.88.019",
-        "Pillow>=2.0.0",
-        "tabulate>=0.8.5",
-        "certifi>=2020.4.5.1",
-        "qrcode>=6.1",
-        "future>=0.18.2",
-    ],
+    install_requires=requirements,
     extras_require={
         "opt": ["pywin32==304;sys_platform == 'win32' and python_version > '3'"]
     },
