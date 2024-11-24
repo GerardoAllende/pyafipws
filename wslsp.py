@@ -10,15 +10,6 @@
 # or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public License
 # for more details.
 
-from __future__ import print_function
-from __future__ import absolute_import
-from __future__ import with_statement
-from future import standard_library
-
-standard_library.install_aliases()
-from builtins import str
-from builtins import input
-
 """Módulo para obtener código de autorización electrónica (CAE) para
 Liquidación Sector Pecuario (hacienda/carne) del web service WSLSP de AFIP
 """

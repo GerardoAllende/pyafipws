@@ -15,10 +15,6 @@ del web service WSFEXv1 de AFIP (Factura Electrónica Exportación Versión 1)
 según RG2758/2010 (Registros Especiales Aduaneros) y RG3689/14 (servicios)
 http://www.sistemasagiles.com.ar/trac/wiki/FacturaElectronicaExportacion
 """
-from __future__ import print_function
-from __future__ import absolute_import
-
-from builtins import str
 
 __author__ = "Mariano Reingart (reingart@gmail.com)"
 __copyright__ = "Copyright (C) 2011-2023 Mariano Reingart"

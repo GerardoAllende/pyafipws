@@ -10,15 +10,6 @@
 # or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public License
 # for more details.
 
-from __future__ import print_function
-from __future__ import absolute_import
-from __future__ import with_statement
-from future import standard_library
-
-standard_library.install_aliases()
-from builtins import input
-from builtins import str
-
 """Módulo para obtener código de autorización electrónica (CAE) para
 Liquidación Única Mensual (lechería) del web service WSLUM de AFIP
 """

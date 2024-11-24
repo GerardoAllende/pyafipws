@@ -11,11 +11,6 @@
 # for more details.
 
 "Módulo de Intefase para archivos de texto (exportación version 1)"
-from __future__ import print_function
-from __future__ import absolute_import
-
-from builtins import input
-from builtins import str
 
 __author__ = "Mariano Reingart (reingart@gmail.com)"
 __copyright__ = "Copyright (C) 2011-2021 Mariano Reingart"

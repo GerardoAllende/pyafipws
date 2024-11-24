@@ -12,14 +12,10 @@
 # for more details.
 
 "Py2Exe extension to build NSIS Installers"
-from __future__ import print_function
 
 # Based on py2exe/samples/extending/setup.py:
 #   "A setup script showing how to extend py2exe."
 #   Copyright (c) 2000-2008 Thomas Heller, Mark Hammond, Jimmy Retzlaff
-
-from builtins import str
-from builtins import object
 
 __author__ = "Mariano Reingart (reingart@gmail.com)"
 __copyright__ = "Copyright (C) 2011-2021 Mariano Reingart"

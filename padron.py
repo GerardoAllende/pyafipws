@@ -11,22 +11,9 @@
 # for more details.
 
 "Herramienta para procesar y consultar el Padrón Unico de Contribuyentes AFIP"
-from __future__ import division
-from __future__ import print_function
-from __future__ import absolute_import
 
 # Documentación e información adicional:
 #    http://www.sistemasagiles.com.ar/trac/wiki/PadronContribuyentesAFIP
-
-from future import standard_library
-
-standard_library.install_aliases()
-from builtins import next
-from builtins import str
-from builtins import range
-from past.builtins import basestring
-from builtins import object
-from past.utils import old_div
 
 __author__ = "Mariano Reingart <reingart@gmail.com>"
 __copyright__ = "Copyright (C) 2014-2021 Mariano Reingart"

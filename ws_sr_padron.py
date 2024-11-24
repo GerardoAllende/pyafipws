@@ -14,13 +14,6 @@
 de AFIP (WS-SR-PADRON de AFIP). Consulta a Padrón Alcance 4 version 1.1
 Consulta de Padrón Constancia Inscripción Alcance 5 version 2.0
 """
-from __future__ import print_function
-from __future__ import absolute_import
-
-from future import standard_library
-
-standard_library.install_aliases()
-from builtins import next
 
 __author__ = "Mariano Reingart <reingart@gmail.com>"
 __copyright__ = "Copyright (C) 2017-2023 Mariano Reingart"

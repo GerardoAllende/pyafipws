@@ -14,21 +14,6 @@
 para transporte ferroviario y automotor RG 5017/2021
 """
 
-from __future__ import print_function
-from __future__ import absolute_import
-
-from future import standard_library
-
-# python 2 compatibility:
-if 'xrange' not in dir(__builtins__):
-    from future import standard_library
-    from future.utils import string_types
-
-    standard_library.install_aliases()
-    from builtins import str
-    from builtins import input
-
-
 __author__ = "Mariano Reingart <reingart@gmail.com>"
 __copyright__ = "Copyright (C) 2021- Mariano Reingart"
 __license__ = "LGPL 3.0"

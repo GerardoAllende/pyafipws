@@ -11,9 +11,6 @@
 # for more details.
 
 "Módulo para generar códigos QR"
-from __future__ import print_function
-from __future__ import unicode_literals
-from builtins import object
 
 __author__ = "Mariano Reingart <reingart@gmail.com>"
 __copyright__ = "Copyright (C) 2020-2021 Mariano Reingart"

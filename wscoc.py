@@ -11,14 +11,6 @@
 # for more details.
 
 "Módulo para Consulta de Operaciones Cambiarias"
-from __future__ import print_function
-from __future__ import absolute_import
-
-from future import standard_library
-
-standard_library.install_aliases()
-from builtins import str
-from builtins import object
 
 __author__ = "Mariano Reingart <reingart@gmail.com>"
 __copyright__ = "Copyright (C) 2011-2021 Mariano Reingart"

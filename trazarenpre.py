@@ -11,8 +11,6 @@
 # for more details.
 
 "Módulo para Trazabilidad de Precursores Químicos RENPRE Resolución 900/12"
-from __future__ import print_function
-from __future__ import absolute_import
 
 # Información adicional y documentación:
 # http://www.sistemasagiles.com.ar/trac/wiki/TrazabilidadPrecursoresQuimicos

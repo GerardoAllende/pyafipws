@@ -11,12 +11,6 @@
 # for more details.
 
 "Módulo de Intefase para archivos de texto (bono fiscal version 1)"
-from __future__ import print_function
-from __future__ import absolute_import
-
-from builtins import str
-from builtins import input
-from past.builtins import basestring
 
 __author__ = "Mariano Reingart (reingart@gmail.com)"
 __copyright__ = "Copyright (C) 2009-2021 Mariano Reingart"

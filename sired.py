@@ -11,16 +11,6 @@
 # for more details.
 
 "Almacenamiento de duplicados electrónicos RG1361/02 y RG1579/03 AFIP"
-from __future__ import division
-from __future__ import print_function
-from __future__ import absolute_import
-
-from builtins import input
-from builtins import str
-from builtins import zip
-from past.builtins import basestring
-from builtins import object
-from past.utils import old_div
 
 __author__ = "Mariano Reingart (reingart@gmail.com)"
 __copyright__ = "Copyright (C) 2009-2021 Mariano Reingart"

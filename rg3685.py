@@ -11,8 +11,6 @@
 # for more details.
 
 "Régimen de información de Compras y Ventas RG3685/14 AFIP"
-from __future__ import print_function
-from __future__ import absolute_import
 
 __author__ = "Mariano Reingart (reingart@gmail.com)"
 __copyright__ = "Copyright (C) 2016-2021 Mariano Reingart"

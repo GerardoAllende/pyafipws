@@ -13,14 +13,6 @@
 """Módulo para obtener Remito Electronico Carnico:
 del web service WSRemCarne versión 3.0 de AFIP (RG4256/18 y RG4303/18)
 """
-from __future__ import print_function
-from __future__ import absolute_import
-
-from future import standard_library
-
-standard_library.install_aliases()
-from builtins import input
-from builtins import str
 
 __author__ = "Mariano Reingart <reingart@gmail.com>"
 __copyright__ = "Copyright (C) 2018-2021 Mariano Reingart"

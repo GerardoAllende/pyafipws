@@ -13,15 +13,6 @@
 """Módulo para la Gestión de cuentas corrientes de Facturas Electrónicas de
 Crédito del servicio web FECredService versión 1.0.1-rc1 (RG4367/18)
 """
-from __future__ import print_function
-from __future__ import absolute_import
-
-from future import standard_library
-
-standard_library.install_aliases()
-from builtins import input
-from builtins import str
-from past.builtins import basestring
 
 __author__ = "Mariano Reingart <reingart@gmail.com>"
 __copyright__ = "Copyright (C) 2018-2021 Mariano Reingart"

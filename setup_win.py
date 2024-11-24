@@ -6,8 +6,6 @@
 #
 
 "Creador de instalador para PyAfipWs"
-from __future__ import print_function
-from __future__ import absolute_import
 
 __author__ = "Mariano Reingart (reingart@gmail.com)"
 __copyright__ = "Copyright (C) 2008-2016 Mariano Reingart"

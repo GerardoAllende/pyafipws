@@ -11,17 +11,6 @@
 # for more details.
 
 "Módulo con funciones auxiliares para el manejo de errores y temas comunes"
-from __future__ import division
-from __future__ import print_function
-
-from future import standard_library
-
-standard_library.install_aliases()
-from builtins import chr
-from builtins import str
-from past.builtins import basestring
-from past.utils import old_div
-from builtins import object
 
 __author__ = "Mariano Reingart <reingart@gmail.com>"
 __copyright__ = "Copyright (C) 2013-2021 Mariano Reingart"

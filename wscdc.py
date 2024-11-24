@@ -11,16 +11,9 @@
 # for more details.
 
 "Módulo para utilizar el servicio web Constatación de Comprobantes de AFIP"
-from __future__ import print_function
-from __future__ import absolute_import
 
 # Información adicional y documentación:
 # http://www.sistemasagiles.com.ar/trac/wiki/ConstatacionComprobantes
-
-from future import standard_library
-
-standard_library.install_aliases()
-from builtins import str
 
 __author__ = "Mariano Reingart (reingart@gmail.com)"
 __copyright__ = "Copyright (C) 2013-2021 Mariano Reingart"

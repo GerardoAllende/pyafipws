@@ -11,19 +11,6 @@
 # for more details.
 
 "Módulo para generar PDF de facturas electrónicas"
-from __future__ import division
-from __future__ import print_function
-from __future__ import absolute_import
-
-from future import standard_library
-
-standard_library.install_aliases()
-from builtins import input
-from builtins import str
-from builtins import range
-from past.builtins import basestring
-from builtins import object
-from past.utils import old_div
 
 __author__ = "Mariano Reingart <reingart@gmail.com>"
 __copyright__ = "Copyright (C) 2011-2021 Mariano Reingart"

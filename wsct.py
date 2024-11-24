@@ -14,8 +14,6 @@
 WSCT de AFIP (Factura Electrónica Comprobantes de Turismo) 
 Resolución Conjunta General 3971 y Resolución 566/2016.
 """
-from __future__ import print_function
-from __future__ import absolute_import
 
 from builtins import str
 

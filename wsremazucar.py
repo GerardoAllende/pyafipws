@@ -13,14 +13,6 @@
 """Módulo para obtener Remito Electronico Azucar:
 del servicio web RemAzucarService versión 2.0.3 de AFIP (RG4519/19)
 """
-from __future__ import print_function
-from __future__ import absolute_import
-
-from future import standard_library
-
-standard_library.install_aliases()
-from builtins import str
-from builtins import input
 
 __author__ = "Mariano Reingart <reingart@gmail.com>"
 __copyright__ = "Copyright (C) 2018-2021 Mariano Reingart"

@@ -11,13 +11,9 @@
 # for more details.
 
 "Módulo Trazabilidad de Productos Fitosanitarios SENASA Resolución 369/2013"
-from __future__ import print_function
-from __future__ import absolute_import
 
 # Información adicional y documentación:
 # http://www.sistemasagiles.com.ar/trac/wiki/TrazabilidadProductosFitosanitarios
-
-from future import standard_library
 
 standard_library.install_aliases()
 __author__ = "Mariano Reingart <reingart@gmail.com>"

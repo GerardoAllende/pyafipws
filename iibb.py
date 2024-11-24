@@ -11,11 +11,6 @@
 # for more details.
 
 "Módulo para consultar percepciones / retenciones ARBA IIBB"
-from __future__ import print_function
-from __future__ import absolute_import
-
-from builtins import str
-from builtins import object
 
 __author__ = "Mariano Reingart (reingart@gmail.com)"
 __copyright__ = "Copyright (C) 2010-2021 Mariano Reingart"
