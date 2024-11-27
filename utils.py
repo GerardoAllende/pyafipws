@@ -45,6 +45,8 @@ from http.cookies import SimpleCookie
 try:
     from six.moves import configparser as SafeConfigParser
 except ImportError:
+    # python3 workaround to read config files not in utf8
+    from configparser import ConfigParser as SafeConfigParser
     import codecs
 
     SafeConfigParser.read = lambda self, filename: self.read_file(
@@ -1029,9 +1031,17 @@ def verifica(ver_list, res_dict, difs):
                 )
             else:
                 # ordeno las listas para poder compararlas si vienen mezcladas
-                rl = sorted(res_dict.get(k, []))
+                tmp = res_dict.get(k, [])
+                try:
+                    rl = sorted(tmp)
+                except:
+                    rl = tmp
+                try:
+                    sorted_v = sorted(v)
+                except:
+                    sorted_v = v
                 # comparo los elementos uno a uno:
-                for i, vl in enumerate(sorted(v)):
+                for i, vl in enumerate(sorted_v):
                     verifica(vl, rl[i], difs)
         elif isinstance(v, dict):
             # comparo recursivamente los elementos:
