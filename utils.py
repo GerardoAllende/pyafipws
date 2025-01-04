@@ -42,14 +42,14 @@ except ImportError:
 from html.parser import HTMLParser
 from http.cookies import SimpleCookie
 
-try:
-    from six.moves import configparser as SafeConfigParser
-except ImportError:
-    # python3 workaround to read config files not in utf8
-    from configparser import ConfigParser as SafeConfigParser
-    import codecs
+#try:
+#    from six.moves import configparser as SafeConfigParser
+#except ImportError:
+# python3 workaround to read config files not in utf8
+from configparser import ConfigParser as SafeConfigParser
+import codecs
 
-    SafeConfigParser.read = lambda self, filename: self.read_file(
+SafeConfigParser.read = lambda self, filename: self.read_file(
         codecs.open(filename, "r", "latin1")
     )
 
