@@ -43,7 +43,7 @@ from html.parser import HTMLParser
 from http.cookies import SimpleCookie
 
 #try:
-#    from six.moves import configparser as SafeConfigParser
+#    from configparser import ConfigParser as SafeConfigParser
 #except ImportError:
 # python3 workaround to read config files not in utf8
 from configparser import ConfigParser as SafeConfigParser

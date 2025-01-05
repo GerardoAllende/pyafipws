@@ -1709,7 +1709,7 @@ def main():
         # start the server.
         win32com.server.localserver.serve([FEPDF._reg_clsid_])
     else:
-        from six.moves import configparser as SafeConfigParser
+        from configparser import ConfigParser as SafeConfigParser
 
         DEBUG = "--debug" in sys.argv
         utils.safe_console()

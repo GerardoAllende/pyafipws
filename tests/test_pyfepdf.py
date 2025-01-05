@@ -24,7 +24,7 @@ from pyafipws.wsaa import WSAA
 from pyafipws.pyfepdf import FEPDF
 from pyafipws.pyfepdf import main
 from builtins import str
-from six.moves import configparser as SafeConfigParser
+from configparser import ConfigParser as SafeConfigParser
 import shutil
 
 

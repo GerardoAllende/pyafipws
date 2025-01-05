@@ -748,7 +748,7 @@ def main():
         win32com.server.register.UseCommandLine(WSRemAzucar)
         sys.exit(0)
 
-    from six.moves import configparser as SafeConfigParser
+    from configparser import ConfigParser as SafeConfigParser
 
     try:
 

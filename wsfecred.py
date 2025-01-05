@@ -1142,7 +1142,7 @@ def main():
         win32com.server.register.UseCommandLine(WSFECred)
         sys.exit(0)
 
-    from six.moves import configparser as SafeConfigParser
+    from configparser import ConfigParser as SafeConfigParser
 
     try:
 

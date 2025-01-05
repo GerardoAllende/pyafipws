@@ -3936,7 +3936,7 @@ def main():
         sys.exit(0)
 
     import csv
-    from six.moves import configparser as SafeConfigParser
+    from configparser import ConfigParser as SafeConfigParser
 
     from pyafipws.wsaa import WSAA
 
