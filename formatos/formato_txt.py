@@ -14,7 +14,7 @@
 from __future__ import print_function
 
 from builtins import str
-from past.builtins import basestring
+from past.builtins import str
 
 __author__ = "Mariano Reingart (reingart@gmail.com)"
 __copyright__ = "Copyright (C) 2011 Mariano Reingart"
@@ -228,7 +228,7 @@ def escribir_linea_txt(dic, formato):
             if clave.capitalize() in dic:
                 clave = clave.capitalize()
             valor = dic.get(clave, "")
-            if not isinstance(valor, basestring):
+            if not isinstance(valor, str):
                 valor = str(valor)
             if sys.version_info[0] < 3 :
                 if isinstance(valor, str):

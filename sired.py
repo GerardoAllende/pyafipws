@@ -930,7 +930,7 @@ def main():
                 for factura in facturas:
                     for k, v in list(factura.items()):
                         # decodificar strings (evitar problemas unicode)
-                        if isinstance(v, basestring):
+                        if isinstance(v, str):
                             if isinstance(v, str):
                                 v = v.decode("latin1", "ignore")
                             factura[k] = unicodedata.normalize("NFKD", v).encode(

@@ -1884,7 +1884,7 @@ class WSLPG(BaseWS):
         v = None
         if "servicio_otros" in kwargs:
             v = kwargs.get("servicio_otros")
-            if isinstance(v, basestring) and v and not v.isalpha():
+            if isinstance(v, str) and v and not v.isalpha():
                 v = float(v)
             if v:
                 servicios_otros = v
@@ -1926,7 +1926,7 @@ class WSLPG(BaseWS):
         ):
             v = kwargs.get(k)
             # cuidado: si AFIP retira el campo, puede fallar si se pasa en 0
-            if isinstance(v, basestring) and v and not v.isalpha():
+            if isinstance(v, str) and v and not v.isalpha():
                 v = float(v)
             if v:
                 self.certificacion["primaria"][kk] = v
@@ -3264,9 +3264,9 @@ class WSLPG(BaseWS):
     ):
         "Agrego un campo a la plantilla"
         # convierto colores de string (en hexadecimal)
-        if isinstance(foreground, basestring):
+        if isinstance(foreground, str):
             foreground = int(foreground, 16)
-        if isinstance(background, basestring):
+        if isinstance(background, str):
             background = int(background, 16)
         if isinstance(text, str):
             text = text.encode("latin1")
@@ -3429,7 +3429,7 @@ class WSLPG(BaseWS):
                 # establezco campos según tabla encabezado:
                 for k, v in list(liq.items()):
                     v = formatear(k, v, fmt_encabezado)
-                    if isinstance(v, (basestring, int, float)):
+                    if isinstance(v, (str, int, float)):
                         f.set(k, v)
                     elif isinstance(v, decimal.Decimal):
                         f.set(k, str(v))

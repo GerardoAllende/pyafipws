@@ -47,11 +47,6 @@ from http.cookies import SimpleCookie
 #except ImportError:
 # python3 workaround to read config files not in utf8
 from configparser import ConfigParser as SafeConfigParser
-import codecs
-
-SafeConfigParser.read = lambda self, filename: self.read_file(
-        codecs.open(filename, "r", "latin1")
-    )
 
 from pysimplesoap.client import (
     SimpleXMLElement,
@@ -472,14 +467,14 @@ class BaseWS(object):
         # busco datos "anidados" (listas / diccionarios)
         for clave in (clave1, clave2, clave3, clave4):
             if clave is not None and valor is not None:
-                if isinstance(clave1, basestring) and clave.isdigit():
+                if isinstance(clave1, str) and clave.isdigit():
                     clave = int(clave)
                 try:
                     valor = valor[clave]
                 except (KeyError, IndexError):
                     valor = None
         if valor is not None:
-            if isinstance(valor, basestring):
+            if isinstance(valor, str):
                 return valor
             else:
                 return str(valor)
@@ -911,7 +906,7 @@ def guardar_dbf(formatos, agrega=False, conf_dbf=None):
         for d in l:
             # si no es un diccionario, ignorar ya que seguramente va en otra
             # tabla (por ej. retenciones tiene su propio formato)
-            if isinstance(d, basestring):
+            if isinstance(d, str):
                 continue
             r = {}
             claves = []
@@ -931,7 +926,7 @@ def guardar_dbf(formatos, agrega=False, conf_dbf=None):
                             v = v.encode("ascii", "replace")
                         if isinstance(v, str):
                             v = v.decode("ascii", "replace").encode("ascii", "replace")
-                        if not isinstance(v, basestring):
+                        if not isinstance(v, str):
                             v = str(v)
                         if len(v) > longitud:
                             v = v[:longitud]  # recorto el string para que quepa
@@ -1099,7 +1094,7 @@ def safe_console():
 
 def norm(x, encoding="latin1"):
     "Convertir acentos codificados en ISO 8859-1 u otro, a ASCII regular"
-    if not isinstance(x, basestring):
+    if not isinstance(x, str):
         x = str(x)
     elif isinstance(x, str):
         x = x.decode(encoding, "ignore")

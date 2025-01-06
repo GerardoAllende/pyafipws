@@ -12,7 +12,7 @@
 
 "Pruebas para Trazabilidad de Medicamentos ANMAT - PAMI - INSSJP Disp. 3683/11"
 
-from past.builtins import basestring
+from past.builtins import str
 
 __author__ = "Mariano Reingart <reingart@gmail.com>"
 __copyright__ = "Copyright (C) 2013 Mariano Reingart"
@@ -81,7 +81,7 @@ class TestTZM(unittest.TestCase):
         )
         self.assertFalse(ws.Excepcion)
         self.assertTrue(ws.Resultado)
-        self.assertIsInstance(ws.CodigoTransaccion, basestring)
+        self.assertIsInstance(ws.CodigoTransaccion, str)
         self.assertEqual(len(ws.CodigoTransaccion), len("23312897"))
 
     def test_fraccion(self):
@@ -151,7 +151,7 @@ class TestTZM(unittest.TestCase):
             id_evento=134,
         )
         self.assertTrue(ws.Resultado)
-        self.assertIsInstance(ws.CodigoTransaccion, basestring)
+        self.assertIsInstance(ws.CodigoTransaccion, str)
         self.assertEqual(len(ws.CodigoTransaccion), len("23312897"))
 
     def test_cancela_parcial(self):
@@ -230,7 +230,7 @@ class TestTZM(unittest.TestCase):
             # verifico que se haya confirmado correctamente:
             self.assertTrue(ws.Resultado)
             # verifico que haya devuelto id_transac_asociada:
-            self.assertIsInstance(ws.CodigoTransaccion, basestring)
+            self.assertIsInstance(ws.CodigoTransaccion, str)
             self.assertEqual(len(ws.CodigoTransaccion), len("23312897"))
             # salgo del ciclo (solo confirmo una transacción)
             break

@@ -15,7 +15,7 @@ from __future__ import print_function
 
 from builtins import zip
 from builtins import range
-from past.builtins import basestring
+from past.builtins import str
 
 __author__ = "Mariano Reingart (reingart@gmail.com)"
 __copyright__ = "Copyright (C) 2010 Mariano Reingart"
@@ -43,7 +43,7 @@ def leer(fn="entrada.csv", delimiter=";"):
         for row in csv_reader:
             r = []
             for c in row:
-                if isinstance(c, basestring):
+                if isinstance(c, str):
                     c = c.strip()
                 r.append(c)
             items.append(r)
@@ -80,7 +80,7 @@ def aplanar(regs):
 
         # datos adicionales (escalares):
         for k, v in list(reg.items()):
-            if k not in MAP_ENC and isinstance(k, (basestring, int)):
+            if k not in MAP_ENC and isinstance(k, (str, int)):
                 fila[k] = v
 
         # por compatibilidad con pyrece:

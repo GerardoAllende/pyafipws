@@ -14,7 +14,7 @@
 from __future__ import print_function
 
 from builtins import str
-from past.builtins import basestring
+from past.builtins import str
 
 __author__ = "Mariano Reingart <reingart@gmail.com>"
 __copyright__ = "Copyright (C) 2010 Mariano Reingart"
@@ -192,7 +192,7 @@ class TestMTX(unittest.TestCase):
         wsmtxca.AutorizarComprobante()
 
         self.assertEqual(wsmtxca.Resultado, "A")  # Aprobado!
-        self.assertIsInstance(wsmtxca.CAE, basestring)
+        self.assertIsInstance(wsmtxca.CAE, str)
         self.assertEqual(len(wsmtxca.CAE), len("63363178822329"))
         self.assertEqual(len(wsmtxca.Vencimiento), len("2013-09-07"))
 

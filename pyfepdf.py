@@ -874,9 +874,9 @@ class FEPDF(object):
     ):
         "Agrego un campo a la plantilla"
         # convierto colores de string (en hexadecimal)
-        if isinstance(foreground, basestring):
+        if isinstance(foreground, str):
             foreground = int(foreground, 16)
-        if isinstance(background, basestring):
+        if isinstance(background, str):
             background = int(background, 16)
         if isinstance(text, str):
             text = text
@@ -961,9 +961,9 @@ class FEPDF(object):
 
         ret = False
         try:
-            if isinstance(num_copias, basestring):
+            if isinstance(num_copias, str):
                 num_copias = int(num_copias)
-            if isinstance(lineas_max, basestring):
+            if isinstance(lineas_max, str):
                 lineas_max = int(lineas_max)
 
             f = self.template
@@ -1039,7 +1039,7 @@ class FEPDF(object):
             # reemplazar saltos de linea en observaciones:
             for k in ("obs_generales", "obs_comerciales"):
                 ds = fact.get(k, "")
-                if isinstance(ds, basestring) and "<br/>" in ds:
+                if isinstance(ds, str) and "<br/>" in ds:
                     fact[k] = ds.replace("<br/>", "\n")
 
             # divido las observaciones por linea:

@@ -333,7 +333,7 @@ class WSFEv1(BaseWS):
         # cada campo puede ser una clave string (dict) o una posición (list)
         ret = self.factura
         for campo in campos:
-            if isinstance(ret, dict) and isinstance(campo, basestring):
+            if isinstance(ret, dict) and isinstance(campo, str):
                 ret = ret.get(campo)
             elif isinstance(ret, list) and len(ret) > campo:
                 ret = ret[campo]

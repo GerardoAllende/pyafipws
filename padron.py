@@ -317,7 +317,7 @@ class PadronAFIP(object):
         for key in [k for k, l, t, d in FORMATO]:
             if row:
                 val = row[key]
-                if not isinstance(val, basestring):
+                if not isinstance(val, str):
                     val = str(row[key])
                 setattr(self, key, val)
             else:
