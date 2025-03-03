@@ -189,7 +189,7 @@ class build_installer(py2exe):
         os.system("del /S /Q dist")
         # First, let py2exe do it's work.
         py2exe.run(self)
-
+        
         windows_exe_files = [target.dest_base + ".exe" for target in self.distribution.windows if not target.dest_base.endswith("_com")]
         dist_dir = self.dist_dir
         comserver_files = [target.dest_base + ".exe" for target in self.distribution.windows if target.dest_base.endswith("_com")]
@@ -237,17 +237,15 @@ class NSISScript(object):
             for file in self.windows_exe_files:
                 if file in ("wsaa.exe", "wsfev1.exe"):
                     self.comserver_files_tlb.append(file)
-
-    def create(self, pathname="base.nsi"):
-        self.pathname = pathname
-        ofi = self.file = open(pathname, "w")
+    
+    def script_text(self):
         ver = self.version
         if "-" in ver:
             ver = ver[: ver.index("-")]
         rev = self.version.endswith("-full") and ".1" or ".0"
         ver = [c in "0123456789." and c or ".%s" % (ord(c) - 96) for c in ver] + [rev]
-        ofi.write(
-            nsi_base_script
+        return(
+        nsi_base_script
             % {
                 "name": self.name,
                 "description": "%s version %s" % (self.description, self.version),
@@ -304,6 +302,12 @@ class NSISScript(object):
                 ),
             }
         )
+        
+    def create(self, pathname="base.nsi"):
+        self.pathname = pathname
+        ofi = self.file = open(pathname, "w")
+        ofi.write(self.script_text())
+        ofi.close()
 
     def compile(self, pathname="base.nsi"):
         os.startfile(pathname, "compile")
