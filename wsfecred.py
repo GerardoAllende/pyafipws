@@ -184,6 +184,7 @@ class WSFECred(BaseWS):
     ]
     _reg_progid_ = "WSFECred"
     _reg_clsid_ = "{F4B2B652-C992-4E46-9134-121F62011C46}"
+    _reg_class_spec_ = "pyafipws.wsfecred.WSFECred"
 
     # Variables globales para BaseWS:
     HOMO = HOMO
