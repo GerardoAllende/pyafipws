@@ -36,6 +36,8 @@ import traceback
 import unicodedata
 import warnings
 
+warnings.simplefilter("ignore")
+
 from pysimplesoap.client import SimpleXMLElement
 from pyafipws.utils import (
     inicializar_y_capturar_excepciones,
