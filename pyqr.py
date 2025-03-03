@@ -63,6 +63,7 @@ class PyQR(object):
 
     _reg_progid_ = "PyQR"
     _reg_clsid_ = "{B176B1CE-E7B5-4BB2-ADEC-9EB9F249DF07}"
+    _reg_class_spec_ = "pyafipws.pyqr.PyQR"
 
     if TYPELIB:
         _typelib_guid_ = '{418C11BF-1051-4B51-95CE-638DC3686634}'
@@ -153,6 +154,7 @@ INSTALL_DIR = PyQR.InstallDir = get_install_dir()
 
 
 def main():
+    url = None
     if "--register" in sys.argv or "--unregister" in sys.argv:
         import pythoncom
         if TYPELIB:
@@ -173,13 +175,10 @@ def main():
 
         win32com.server.register.UseCommandLine(PyQR)
     elif "/Automate" in sys.argv:
-        try:
-            # MS seems to like /automate to run the class factories.
-            import win32com.server.localserver
+        # MS seems to like /automate to run the class factories.
+        import win32com.server.localserver
 
-            win32com.server.localserver.serve([PyQR._reg_clsid_])
-        except Exception:
-            raise
+        win32com.server.localserver.serve([PyQR._reg_clsid_])
     else:
 
         pyqr = PyQR()
