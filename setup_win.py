@@ -29,6 +29,11 @@ __version__ = "%s.%s.%s" % (sys.version_info[0:2] + (rev, ))
 
 HOMO = True
 
+try:
+    import pyafipws
+except:
+    sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+
 # build a one-click-installer for windows:
 import py2exe
 from pyafipws.nsis import build_installer, Target
@@ -39,36 +44,36 @@ from pyafipws.nsis import build_installer, Target
 #import pyrece
 from pyafipws import wsaa
 from pyafipws import wsfev1, rece1, rg3685
-#import wsfexv1, recex1
-#import wsbfev1, receb1
-#import wsmtx, recem
-#import wsct, recet
-#import wsfecred
-#import ws_sr_padron
-#from pyafipws import pyfepdf
-#import pyemail
-#import pyi25
-#from pyafipws import pyqr
-#import ws_sire
-#import wsctg
-#import wslpg
-#import wsltv
-#import wslum
-#import wslsp
-#import wsremcarne
-#import wsremharina
-#import wsremazucar
-#import wscoc
-#import wscdc
-#import cot
-#import iibb
-#import trazamed
-#import trazaprodmed
-#import trazarenpre
-#import trazafito
-#import trazavet
-#import padron
-#import sired
+# ~ from pyafipws import wsfexv1, recex1
+# ~ from pyafipws import wsbfev1, receb1
+# ~ from pyafipws import wsmtx, recem
+# ~ from pyafipws import wsct, recet
+from pyafipws import wsfecred
+from pyafipws import ws_sr_padron
+# ~ from pyafipws import pyfepdf
+# ~ from pyafipws import pyemail
+# ~ from pyafipws import pyi25
+from pyafipws import pyqr
+# ~ from pyafipws import ws_sire
+# ~ from pyafipws import wsctg
+# ~ from pyafipws import wslpg
+# ~ from pyafipws import wsltv
+# ~ from pyafipws import wslum
+# ~ from pyafipws import wslsp
+# ~ import wsremcarne
+# ~ import wsremharina
+# ~ import wsremazucar
+# ~ from pyafipws import wscoc
+# ~ from pyafipws import wscdc
+from pyafipws import cot
+# ~ from pyafipws import iibb
+# ~ from pyafipws import trazamed
+# ~ from pyafipws import trazaprodmed
+# ~ from pyafipws import trazarenpre
+# ~ from pyafipws import trazafito
+# ~ from pyafipws import trazavet
+from pyafipws import padron
+# ~ from pyafipws import sired
 
 data_files = [
     (".", ["licencia.txt",]),
@@ -146,12 +151,13 @@ for mod in ['socks', 'dbhash', 'gdbm', 'dbm', 'dumbdbm', 'anydbm']:
 # don't pull in all this MFC stuff used by the makepy UI.
 excludes=["pywin", "pywin.dialogs", "pywin.dialogs.list", "win32ui",
             "Tkconstants","Tkinter","tcl",
-            "_imagingtk", "PIL._imagingtk", "ImageTk", "PIL.ImageTk", "FixTk",
+            "_imagingtk", "ImageTk", "FixTk",
             ]
 
 # basic options for py2exe
 opts = { 
     'py2exe': {
+        'verbose': 4,
         'includes': includes,
         'optimize': 0,
         'excludes': excludes,
@@ -257,10 +263,13 @@ if 'wsct' in globals():
 
 if 'wsfecred' in globals():
     kwargs['com_server'] += [
-        Target(module=wsfecred, modules="wsfecred"),
+        Target(module=wsfecred, modules="wsfecred", create_exe=True, create_dll=True),
         ]
     kwargs['console'] += [
         Target(module=wsfecred, script='wsfecred.py', dest_base="wsfecred_cli"),
+        ]
+    kwargs['windows'] += [
+        Target(module=wsfecred, script='wsfecred.py', dest_base="wsfecred_com"),
         ]
     data_files += [
         ]
@@ -328,7 +337,7 @@ if 'pyi25' in globals():
 
 if 'pyqr' in globals():
     kwargs['com_server'] += [
-        Target(module=pyqr, modules="pyqr", create_exe=False, create_dll=True),
+        Target(module=pyqr, modules="pyqr", create_exe=True, create_dll=True),
         ]
     kwargs['console'] += [
         Target(module=pyqr, script='pyqr.py', dest_base="pyqr"),
@@ -479,17 +488,21 @@ if 'ws_sr_padron' in globals():
         Target(module=ws_sr_padron, script='ws_sr_padron.py', dest_base="ws_sr_padron_cli"),
         ]
     __version__ += "+ws_sr_padron_" + ws_sr_padron.__version__
+    kwargs['windows'] += [
+        Target(module=ws_sr_padron, script='ws_sr_padron.py', dest_base="ws_sr_padron_com"),
+        ]
+    __version__ += "+ws_sr_padron_" + ws_sr_padron.__version__
     HOMO &= ws_sr_padron.HOMO
 
 if 'cot' in globals():
     kwargs['com_server'] += [
-        Target(module=cot,modules="cot")
+        Target(module=cot, modules="cot", create_exe=True, create_dll=True)
         ]
     kwargs['console'] += [
         Target(module=cot, script='cot.py', dest_base="cot_cli")
         ]
     kwargs['windows'] += [
-        Target(module=cot, script='cot.pyw', dest_base="cot_win"), 
+        Target(module=cot, script='cot.py', dest_base="cot_com"), 
         ]
     data_files += [("datos", [
         "datos/TB_20111111112_000000_20080124_000001.txt", 
@@ -571,9 +584,11 @@ if 'padron' in globals():
     kwargs['com_server'] += [
         Target(module=padron, modules="padron", create_exe=True, create_dll=True),
         ]
-
     kwargs['console'] += [
         Target(module=padron, script='padron.py', dest_base="padron_cli"), 
+        ]
+    kwargs['windows'] += [
+        Target(module=padron, script='padron.py', dest_base="padron_com"), 
         ]
     if os.path.exists("padron.db"):
         data_files += [(".", [
@@ -590,6 +605,13 @@ if 'sired' in globals():
         Target(module=sired, script='sired.py', dest_base="sired_cli"), 
         ]
     __version__ += "+sired_" + sired.__version__
+    
+
+# Workaround para que py2exe incluya módulos que por alguna razón los deja afuera
+from pyafipws import import_faltantes
+kwargs['console'] += [
+        Target(module=import_faltantes, script='import_faltantes.py', dest_base="import_faltantes_cli"), 
+        ]
 
 # custom installer:
 kwargs['cmdclass'] = {"py2exe": build_installer}
