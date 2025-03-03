@@ -71,7 +71,8 @@ class COT(object):
 
     _reg_progid_ = "COT"
     _reg_clsid_ = "{7518B2CF-23E9-4821-BC55-D15966E15620}"
-
+    _reg_class_spec_ = "pyafipws.cot.COT"
+    
     Version = "%s %s" % (__version__, HOMO and "Homologación" or "")
 
     def __init__(self):
@@ -243,6 +244,13 @@ def main():
 
         win32com.server.register.UseCommandLine(COT)
         sys.exit(0)
+    elif "/Automate" in sys.argv:
+        # MS seems to like /automate to run the class factories.
+        import win32com.server.localserver
+
+        # win32com.server.localserver.main()
+        # start the server.
+        win32com.server.localserver.serve([COT._reg_clsid_])
     elif len(sys.argv) < 4:
         print(
             "Se debe especificar el nombre de archivo, usuario y clave como argumentos!"
