@@ -246,6 +246,7 @@ class WSSrPadronA5(WSSrPadronA4):
 
     _reg_progid_ = "WSSrPadronA5"
     _reg_clsid_ = "{DF7447DD-EEF3-4E6B-A93B-F969B5075EC8}"
+    _reg_class_spec_ = "pyafipws.ws_sr_padron.WSSrPadronA5"
 
     WSDL = WSDL.replace("personaServiceA4", "personaServiceA5")
 
@@ -464,7 +465,11 @@ if __name__ == "__main__":
     if "--register" in sys.argv or "--unregister" in sys.argv:
         import win32com.server.register
 
-        win32com.server.register.UseCommandLine(WSSrPadronA4)
         win32com.server.register.UseCommandLine(WSSrPadronA5)
+    elif "/Automate" in sys.argv:
+        # MS seems to like /automate to run the class factories.
+        import win32com.server.localserver
+
+        win32com.server.localserver.serve([WSSrPadronA5._reg_clsid_])
     else:
         main()
