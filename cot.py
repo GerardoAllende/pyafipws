@@ -251,6 +251,7 @@ def main():
         # win32com.server.localserver.main()
         # start the server.
         win32com.server.localserver.serve([COT._reg_clsid_])
+        sys.exit(0)
     elif len(sys.argv) < 4:
         print(
             "Se debe especificar el nombre de archivo, usuario y clave como argumentos!"
