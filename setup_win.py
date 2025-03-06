@@ -35,19 +35,19 @@ except:
     sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 # build a one-click-installer for windows:
+
 import py2exe
 from pyafipws.nsis import build_installer, Target
-
 # modulos a compilar y empaquetar (comentar si no se desea incluir):
 
 #import pyafipws
 #import pyrece
 from pyafipws import wsaa
 from pyafipws import wsfev1, rece1, rg3685
-# ~ from pyafipws import wsfexv1, recex1
-# ~ from pyafipws import wsbfev1, receb1
-# ~ from pyafipws import wsmtx, recem
-# ~ from pyafipws import wsct, recet
+from pyafipws import wsfexv1, recex1
+from pyafipws import wsbfev1, receb1
+from pyafipws import wsmtx, recem
+from pyafipws import wsct, recet
 from pyafipws import wsfecred
 from pyafipws import ws_sr_padron
 # ~ from pyafipws import pyfepdf
@@ -218,6 +218,7 @@ if 'wsfev1' in globals():
     HOMO &= wsfev1.HOMO
 
 if 'wsfexv1' in globals():
+    kwargs['windows'] += [Target(module=wsfexv1, script="wsfexv1.py", dest_base="wsfevx1_com")]
     kwargs['com_server'] += [
         Target(module=wsfexv1, modules="wsfexv1", create_exe=True, create_dll=True)
         ]
@@ -229,6 +230,7 @@ if 'wsfexv1' in globals():
     HOMO &= wsfexv1.HOMO
 
 if 'wsbfev1' in globals():
+    kwargs['windows'] += [Target(module=wsbfev1, script="wsbfev1.py", dest_base="wsbfev1_com")]
     kwargs['com_server'] += [
         Target(module=wsbfev1, modules="wsbfev1", create_exe=True, create_dll=True)
         ]
@@ -240,6 +242,7 @@ if 'wsbfev1' in globals():
     HOMO &= wsbfev1.HOMO
 
 if 'wsmtx' in globals():
+    kwargs['windows'] += [Target(module=wsmtx, script="wsmtx.py", dest_base="wsmtx_com")]
     kwargs['com_server'] += [
         Target(module=wsmtx, modules="wsmtx", create_exe=True, create_dll=True)
         ]
@@ -251,6 +254,7 @@ if 'wsmtx' in globals():
     HOMO &= wsmtx.HOMO
 
 if 'wsct' in globals():
+    kwargs['windows'] += [Target(module=wsct, script="wsct.py", dest_base="wsct_com")]
     kwargs['com_server'] += [
         Target(module=wsct, modules="wsct", create_exe=True, create_dll=True)
         ]
