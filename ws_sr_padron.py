@@ -104,6 +104,7 @@ class WSSrPadronA4(BaseWS):
         "direccion",
         "localidad",
         "provincia",
+        'id_provincia',
         "cod_postal",
     ]
 
@@ -130,6 +131,7 @@ class WSSrPadronA4(BaseWS):
         self.es_sucesion = ""
         self.denominacion = ""
         self.direccion = self.localidad = self.provincia = self.cod_postal = ""
+        self.id_provincia = -1
         self.domicilios = []
         self.impuestos = []
         self.actividades = []
@@ -184,11 +186,13 @@ class WSSrPadronA4(BaseWS):
             domicilio = domicilios[0]
             self.direccion = domicilio.get("direccion", "")
             self.localidad = domicilio.get("localidad", "")  # no usado en CABA
-            self.provincia = PROVINCIAS.get(domicilio.get("idProvincia"), "")
+            self.id_provincia = domicilio.get("idProvincia")
+            self.provincia = PROVINCIAS.get(self.id_provincia, "")
             self.cod_postal = domicilio.get("codPostal")
         else:
             self.direccion = self.localidad = self.provincia = ""
             self.cod_postal = ""
+            self.id_provincia = -1
         # retrocompatibilidad:
         self.domicilios = domicilios
         self.domicilio = "%s - %s (%s) - %s" % (
@@ -290,11 +294,13 @@ class WSSrPadronA5(WSSrPadronA4):
         if domicilio:
             self.direccion = domicilio.get("direccion", "")
             self.localidad = domicilio.get("localidad", "")  # no usado en CABA
-            self.provincia = PROVINCIAS.get(domicilio.get("idProvincia"), "")
+            self.id_provincia = domicilio.get("idProvincia")
+            self.provincia = PROVINCIAS.get(self.id_provincia, "")
             self.cod_postal = domicilio.get("codPostal")
         else:
             self.direccion = self.localidad = self.provincia = ""
             self.cod_postal = ""
+            self.provincia = -1
         # retrocompatibilidad:
         self.domicilios = [domicilio]
         self.domicilio = "%s - %s (%s) - %s" % (
