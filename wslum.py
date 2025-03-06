@@ -821,7 +821,7 @@ def main():
         sys.exit(0)
 
     import csv
-    from pyafipws.utils import SafeConfigParser
+    from configparser import SafeConfigParser
 
     from pyafipws.wsaa import WSAA
 

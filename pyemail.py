@@ -34,7 +34,7 @@ from email.mime.application import MIMEApplication
 from email.mime.multipart import MIMEMultipart
 import sys, os
 import smtplib
-from pyafipws.utils import SafeConfigParser
+from configparser import SafeConfigParser
 
 
 DEBUG = False

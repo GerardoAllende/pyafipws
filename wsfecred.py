@@ -1158,7 +1158,7 @@ def main():
         win32com.server.localserver.serve([WSFECred._reg_clsid_])    
         sys.exit(0)
 
-    from pyafipws.utils import SafeConfigParser
+    from pyafipws.utils import configparser as SafeConfigParser
 
     try:
 

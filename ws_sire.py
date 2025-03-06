@@ -40,7 +40,7 @@ from pyafipws.utils import (
     SoapFault,
     SimpleXMLElement,
 )
-from pyafipws.utils import SafeConfigParser
+from configparser import SafeConfigParser
 
 
 HOMO = False

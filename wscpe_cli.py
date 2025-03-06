@@ -303,7 +303,7 @@ if __name__ == '__main__':
                 comienzo += longitud
         sys.exit(0)
 
-    from pyafip.utils import SafeConfigParser
+    from ConfigParser import SafeConfigParser
 
     try:
     

@@ -331,8 +331,7 @@ class BaseWS(object):
                 % (wsdl, cache, proxy_dict, cacert)
             )
             # analizar espacio de nombres (axis vs .net):
-            # ~ ns = "ser" if self.WSDL[-5:] == "?wsdl" else None
-            ns = None
+            ns = "ser" if self.WSDL[-5:] == "?wsdl" else None
             self.client = SoapClient(
                 wsdl=wsdl,
                 cache=cache,
