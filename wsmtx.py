@@ -127,6 +127,7 @@ class WSMTXCA(BaseWS):
 
     _reg_progid_ = "WSMTXCA"
     _reg_clsid_ = "{8128E6AB-FB22-4952-8EA6-BD41C29B17CA}"
+    _reg_class_spec_ = "pyafipws.wsmtx.WSMTXCA"
 
     # Variables globales para BaseWS:
     HOMO = HOMO
@@ -1834,5 +1835,11 @@ if __name__ == "__main__":
         import win32com.server.register
 
         win32com.server.register.UseCommandLine(WSMTXCA)
+    elif "/Automate" in sys.argv:
+        # MS seems to like /automate to run the class factories.
+        import win32com.server.localserver
+        #win32com.server.localserver.main()
+        # start the server.
+        win32com.server.localserver.serve([WSMTXCA._reg_clsid_])
     else:
         main()

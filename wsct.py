@@ -124,6 +124,7 @@ class WSCT(BaseWS):
 
     _reg_progid_ = "WSCT"
     _reg_clsid_ = "{5DE7917D-CE97-4C88-B6C7-DAF8CEB54E93}"
+    _reg_class_spec_ = "pyafipws.wsct.WSCT"
 
     # Variables globales para BaseWS:
     HOMO = HOMO
@@ -1155,5 +1156,11 @@ if __name__ == "__main__":
         import win32com.server.register
 
         win32com.server.register.UseCommandLine(WSCT)
+    elif "/Automate" in sys.argv:
+        # MS seems to like /automate to run the class factories.
+        import win32com.server.localserver
+        #win32com.server.localserver.main()
+        # start the server.
+        win32com.server.localserver.serve([WSCT._reg_clsid_])
     else:
         main()

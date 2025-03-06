@@ -104,6 +104,7 @@ class WSFEXv1(BaseWS):
 
     _reg_progid_ = "WSFEXv1"
     _reg_clsid_ = "{8106F039-D132-4F87-8AFE-ADE47B5503D4}"
+    _reg_class_spec_ = "pyafipws.wsfexv1.WSFEXv1"
 
     # Variables globales para BaseWS:
     HOMO = HOMO
@@ -860,12 +861,12 @@ def main():
         win32com.server.register.UseCommandLine(WSFEXv1)
         if "--wsfex" in sys.argv:
             win32com.server.register.UseCommandLine(WSFEX)
-    # elif "/Automate" in sys.argv:
-    #    # MS seems to like /automate to run the class factories.
-    #    import win32com.server.localserver
-    #    #win32com.server.localserver.main()
-    #    # start the server.
-    #    win32com.server.localserver.serve([WSFEXv1._reg_clsid_])
+    elif "/Automate" in sys.argv:
+        # MS seems to like /automate to run the class factories.
+        import win32com.server.localserver
+        #win32com.server.localserver.main()
+        # start the server.
+        win32com.server.localserver.serve([WSFEXv1._reg_clsid_])
     else:
 
         # Crear objeto interface Web Service de Factura Electrónica de Exportación
