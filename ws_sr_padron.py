@@ -471,11 +471,12 @@ if __name__ == "__main__":
     if "--register" in sys.argv or "--unregister" in sys.argv:
         import win32com.server.register
 
+        win32com.server.register.UseCommandLine(WSSrPadronA4)
         win32com.server.register.UseCommandLine(WSSrPadronA5)
     elif "/Automate" in sys.argv:
         # MS seems to like /automate to run the class factories.
         import win32com.server.localserver
 
-        win32com.server.localserver.serve([WSSrPadronA5._reg_clsid_])
+        win32com.server.localserver.serve([WSSrPadronA4._reg_clsid_, WSSrPadronA5._reg_clsid_])
     else:
         main()

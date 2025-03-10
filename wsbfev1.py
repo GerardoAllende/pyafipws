@@ -658,6 +658,11 @@ def main():
         win32com.server.register.UseCommandLine(WSBFEv1)
         if "--wsbfe" in sys.argv:
             win32com.server.register.UseCommandLine(WSBFE)
+    elif "/Automate" in sys.argv:
+        # MS seems to like /automate to run the class factories.
+        import win32com.server.localserver
+
+        win32com.server.localserver.serve([WSBFEv1._reg_clsid_, WSBFE._reg_clsid_])
     else:
 
         # Crear objeto interface Web Service de Factura Electrónica de Exportación

@@ -657,6 +657,12 @@ def main():
 
         win32com.server.register.UseCommandLine(WSRemCarne)
         sys.exit(0)
+    elif "/Automate" in sys.argv:
+        # MS seems to like /automate to run the class factories.
+        import win32com.server.localserver
+
+        win32com.server.localserver.serve([WSRemCarne._reg_clsid_)
+        sys.exit(0)
 
     from pyafipws.utils import SafeConfigParser
 

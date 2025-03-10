@@ -706,6 +706,18 @@ INSTALL_DIR = SIRED.InstallDir = get_install_dir()
 
 def main():
     
+    if "--register" in sys.argv or "--unregister" in sys.argv:
+        import win32com.server.register
+
+        win32com.server.register.UseCommandLine(SIRED)
+        sys.exit(0)
+    elif "/Automate" in sys.argv:
+        # MS seems to like /automate to run the class factories.
+        import win32com.server.localserver
+
+        win32com.server.localserver.serve([SIRED._reg_clsid_])
+        sys.exit(0)
+    
     try:
         if hasattr(sys, "frozen") or False:
             p = os.path.dirname(os.path.abspath(sys.executable))

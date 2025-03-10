@@ -254,6 +254,12 @@ def main():
 
         win32com.server.register.UseCommandLine(IIBB)
         sys.exit(0)
+    elif "/Automate" in sys.argv:
+        # MS seems to like /automate to run the class factories.
+        import win32com.server.localserver
+
+        win32com.server.localserver.serve([IIBB._reg_clsid_])
+        sys.exit(0)
     elif len(sys.argv) < 6:
         print(
             "Se debe especificar usuario, clave, fecha desde/hasta y cuit como argumentos!"
