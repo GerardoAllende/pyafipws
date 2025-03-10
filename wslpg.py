@@ -4242,7 +4242,7 @@ def main():
 
             print(
                 "Liquidacion: pto_emision=%s nro_orden=%s nro_act=%s tipo_op=%s"
-                % (t
+                % (
                     wslpg.liquidacion["ptoEmision"],
                     wslpg.liquidacion["nroOrden"],
                     wslpg.liquidacion["nroActComprador"],
