@@ -1276,6 +1276,6 @@ if __name__ == "__main__":
         # MS seems to like /automate to run the class factories.
         import win32com.server.localserver
 
-        win32com.server.localserver.serve([WSCOC._reg_clsid_)
+        win32com.server.localserver.serve([WSCOC._reg_clsid_])
     else:
         main()

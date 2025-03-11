@@ -1053,7 +1053,7 @@ def main():
         # MS seems to like /automate to run the class factories.
         import win32com.server.localserver
 
-        win32com.server.localserver.serve([WSCTG._reg_clsid_, WSCTGv2._reg_clsid_)
+        win32com.server.localserver.serve([WSCTG._reg_clsid_, WSCTGv2._reg_clsid_])
         sys.exit(0)
     import csv
     from pyafipws.utils import SafeConfigParser

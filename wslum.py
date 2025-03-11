@@ -823,7 +823,7 @@ def main():
         # MS seems to like /automate to run the class factories.
         import win32com.server.localserver
 
-        win32com.server.localserver.serve([WSLUM._reg_clsid_)
+        win32com.server.localserver.serve([WSLUM._reg_clsid_])
         sys.exit(0)
 
     import csv

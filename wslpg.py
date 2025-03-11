@@ -3948,7 +3948,7 @@ def main():
         # MS seems to like /automate to run the class factories.
         import win32com.server.localserver
 
-        win32com.server.localserver.serve([WSLPG._reg_clsid_)
+        win32com.server.localserver.serve([WSLPG._reg_clsid_])
         sys.exit(0)
     import csv
     from pyafipws.utils import SafeConfigParser
@@ -4242,7 +4242,7 @@ def main():
 
             print(
                 "Liquidacion: pto_emision=%s nro_orden=%s nro_act=%s tipo_op=%s"
-                % (
+                % ( 
                     wslpg.liquidacion["ptoEmision"],
                     wslpg.liquidacion["nroOrden"],
                     wslpg.liquidacion["nroActComprador"],
