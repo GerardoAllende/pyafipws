@@ -302,6 +302,10 @@ if __name__ == "__main__":
         import win32com.server.register
 
         win32com.server.register.UseCommandLine(WSSIREc2005)
-        win32com.server.register.UseCommandLine(WSSIREc2005)
+    elif "/Automate" in sys.argv:
+        # MS seems to like /automate to run the class factories.
+        import win32com.server.localserver
+
+        win32com.server.localserver.serve([WSSIREc2005._reg_clsid_]) 
     else:
         main()
