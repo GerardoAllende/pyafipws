@@ -91,7 +91,7 @@ Section %(name)s
     WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\%(reg_key)s" "DisplayName" "%(description)s (solo eliminar)"
     WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\%(reg_key)s" "UninstallString" "$INSTDIR\Uninst.exe"
     WriteUninstaller "Uninst.exe"
-    %(install_vcredist)s
+    ;%(install_vcredist)s
     ;To Register a DLL
     %(register_com_servers_dll)s
     %(register_com_servers_exe)s
@@ -310,7 +310,7 @@ class NSISScript(object):
         ofi.close()
 
     def compile(self, pathname="base.nsi"):
-        nsis_exe = r'..\NSIS\makensisw.exe'
+        nsis_exe = r'..\NSIS\makensis.exe'
         if os.path.exists(nsis_exe):
             os.system(fr'{nsis_exe} {pathname}')
         else:
