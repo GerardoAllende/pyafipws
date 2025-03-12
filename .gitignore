@@ -33,3 +33,7 @@ nosetests.xml
 .mr.developer.cfg
 .project
 .pydevproject
+
+base.nsi
+Py*.exe
+vcredist.exe
