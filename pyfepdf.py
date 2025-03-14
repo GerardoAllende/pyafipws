@@ -109,6 +109,7 @@ class FEPDF(object):
 
     _reg_progid_ = "PyFEPDF"
     _reg_clsid_ = "{C9B5D7BB-0388-4A5E-87D5-0B4376C7A336}"
+    _reg_class_spec_ = "pyafipws.pyfepdf.FEPDF"
 
     tipos_doc = {
         80: "CUIT",
@@ -893,6 +894,8 @@ class FEPDF(object):
             background = int(background, 16)
         if isinstance(text, str):
             text = text
+        if not isinstance(priority, int):
+            priority = 0
         field = {
             "name": nombre,
             "type": tipo,
@@ -2122,8 +2125,6 @@ def main():
         fepdf.GenerarPDF(archivo=salida)
         if "--mostrar" in sys.argv:
             fepdf.MostrarPDF(archivo=salida, imprimir="--imprimir" in sys.argv)
-
-    return fepdf
 
 if __name__ == "__main__":
     main()
