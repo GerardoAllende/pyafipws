@@ -312,7 +312,7 @@ class NSISScript(object):
     def compile(self, pathname="base.nsi"):
         nsis_exe = r'..\NSIS\makensis.exe'
         if os.path.exists(nsis_exe):
-            os.system(fr'{nsis_exe} {pathname}')
+            os.system(f'{nsis_exe} {pathname}')
         else:
             os.startfile(pathname, "compile")
 
