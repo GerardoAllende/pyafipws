@@ -148,7 +148,7 @@ Sub Main()
     ok = PyFEPDF.AgregarCampo(nombre, tipo, X1, Y1, X2, Y2, _
                         Font, Size, Bold, Italic, Underline, _
                         foreground, background, _
-                        Align, Text, priority)
+                        Align, Text, prioridad)
 
     ' Creo plantilla para esta factura (papel A4 vertical):
     papel = "A4" ' o "letter" para carta, "legal" para oficio
