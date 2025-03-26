@@ -229,6 +229,7 @@ class WSCTG(BaseWS):
     ]
     _reg_progid_ = "WSCTG"
     _reg_clsid_ = "{4383E947-57C4-47C5-8419-85221580CB48}"
+    _reg_class_spec_ = "pyafipws.wsctg.WSCTG"
 
     # Variables globales para BaseWS:
     HOMO = HOMO
@@ -1005,7 +1006,7 @@ def escribir_archivo(cols, items, nombre_archivo, agrega=False):
 class WSCTGv2(BaseWS):
     _reg_progid_ = "WSCTGv2"
     _reg_clsid_ = "{ACDEFB8A-34E1-48CF-94E8-6AF6ADA0717A}"
-
+    _reg_class_spec_ = "pyafipws.wsctg.WSCTGv2"
 
 # busco el directorio de instalación (global para que no cambie si usan otra dll)
 if not hasattr(sys, "frozen"):

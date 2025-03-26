@@ -178,6 +178,7 @@ class WSRemHarina(BaseWS):
     ]
     _reg_progid_ = "WSRemHarina"
     _reg_clsid_ = "{72BFB9B9-0FD9-497C-8C62-5D41F7029377}"
+    _reg_class_spec_ = "pyafipws.WSRemHarina.WSRemHarina"
 
     # Variables globales para BaseWS:
     HOMO = HOMO

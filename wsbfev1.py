@@ -101,6 +101,7 @@ class WSBFEv1(BaseWS):
 
     _reg_progid_ = "WSBFEv1"
     _reg_clsid_ = "{EE4ABEE2-76DD-450F-880B-66710AE464D6}"
+    _reg_class_spec_ = "pyafipws.wsbfev1.WSBFEv1"
 
     # Variables globales para BaseWS:
     HOMO = HOMO
@@ -622,6 +623,7 @@ class WSBFE(WSBFEv1):
 
     _reg_progid_ = "WSBFE"
     _reg_clsid_ = "{02CBC6DA-455D-4EE6-8302-411D13253CBF}"
+    _reg_class_spec_ = "pyafipws.wsbfev1.WSBFE"
 
     def __init__(self):
         WSBFEv1.__init__(self)
@@ -654,7 +656,6 @@ def main():
     global HOMO
     if "--register" in sys.argv or "--unregister" in sys.argv:
         import win32com.server.register
-
         win32com.server.register.UseCommandLine(WSBFEv1)
         if "--wsbfe" in sys.argv:
             win32com.server.register.UseCommandLine(WSBFE)

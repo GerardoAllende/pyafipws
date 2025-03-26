@@ -477,6 +477,7 @@ class SIRED(object):
     _readonly_attrs_ = _public_attrs_
     _reg_progid_ = "SIRED"
     _reg_clsid_ = "{3DC74AD5-939F-42AB-8381-FCA7AF783C77}"
+    _reg_class_spec_ = "pyafipws.sired.SIRED"
 
     def __init__(self):
         self.db_path = os.path.join(self.InstallDir, "sired.db")

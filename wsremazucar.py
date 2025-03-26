@@ -174,6 +174,7 @@ class WSRemAzucar(BaseWS):
     ]
     _reg_progid_ = "WSRemAzucar"
     _reg_clsid_ = "{448F912A-C013-4E19-8D52-7FC88305590A}"
+    _reg_class_spec_ = "pyafipws.WSRemAzucar.WSRemAzucar"
 
     # Variables globales para BaseWS:
     HOMO = HOMO

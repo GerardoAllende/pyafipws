@@ -110,6 +110,7 @@ class WSSrPadronA4(BaseWS):
 
     _reg_progid_ = "WSSrPadronA4"
     _reg_clsid_ = "{C2270008-4324-46F6-A2D3-60836EE63BD7}"
+    _reg_class_spec_ = "pyafipws.ws_sr_padron.WSSrPadronA4"
 
     # Variables globales para BaseWS:
     HOMO = HOMO

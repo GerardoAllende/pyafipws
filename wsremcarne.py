@@ -123,6 +123,7 @@ class WSRemCarne(BaseWS):
                      ]
     _reg_progid_ = "WSRemCarne"
     _reg_clsid_ = "{71DB0CB9-2ED7-4226-A1E6-C3FA7FB18F41}"
+    _reg_class_spec_ = "pyafipws.WSRemCarne.WSRemCarne"
 
     # Variables globales para BaseWS:
     HOMO = HOMO

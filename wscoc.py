@@ -186,6 +186,7 @@ class WSCOC(object):
 
     _reg_progid_ = "WSCOC"
     _reg_clsid_ = "{B30406CE-326A-46D9-B807-B7916E3F1B96}"
+    _reg_class_spec_ = "pyafipws.wscoc.WSCOC"
 
     Version = "%s %s %s" % (
         __version__,

@@ -162,6 +162,7 @@ class PadronAFIP(object):
     _readonly_attrs_ = _public_attrs_[3:-1]
     _reg_progid_ = "PadronAFIP"
     _reg_clsid_ = "{6206DF5E-3EEF-47E9-A532-CD81EBBAF3AA}"
+    _reg_class_spec_ = "pyafipws.padron.PadronAFIP"
 
     def __init__(self):
         self.db_path = os.path.join(self.InstallDir, "padron.db")

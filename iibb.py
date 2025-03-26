@@ -82,6 +82,7 @@ class IIBB(object):
 
     _reg_progid_ = "IIBB"
     _reg_clsid_ = "{2C7E29D2-0C99-49D8-B04B-A16B807BB123}"
+    _reg_class_spec_ = "pyafipws.iibb.IIBB"
 
     Version = "%s %s" % (__version__, HOMO and "Homologación" or "")
 

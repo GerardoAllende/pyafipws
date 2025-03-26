@@ -173,6 +173,7 @@ class WSLUM(BaseWS):
     ]
     _reg_progid_ = "WSLUM"
     _reg_clsid_ = "{4CBB2DF8-7AAE-434E-916D-9D663BB1CAFC}"
+    _reg_class_spec_ = "pyafipws.wslum.WSLUM"
 
     # Variables globales para BaseWS:
     HOMO = HOMO

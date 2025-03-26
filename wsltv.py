@@ -179,6 +179,7 @@ class WSLTV(BaseWS):
     ]
     _reg_progid_ = "WSLTV"
     _reg_clsid_ = "{C6EEAE8A-7560-4538-B29C-76434A8C2DC3}"
+    _reg_class_spec_ = "pyafipws.wsltv.WSLTV"
 
     # Variables globales para BaseWS:
     HOMO = HOMO
