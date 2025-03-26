@@ -91,11 +91,6 @@ Section %(name)s
     WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\%(reg_key)s" "DisplayName" "%(description)s (solo eliminar)"
     WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\%(reg_key)s" "UninstallString" "$INSTDIR\Uninst.exe"
     WriteUninstaller "Uninst.exe"
-    ;%(install_vcredist)s
-    ;To Register a DLL
-    %(register_com_servers_dll)s
-    %(register_com_servers_exe)s
-    %(register_com_servers_tlb)s
     ;create start-menu items
     IfFileExists $INSTDIR\\pyrece.exe 0 +4
         CreateDirectory "$SMPROGRAMS\%(name)s"
@@ -105,12 +100,11 @@ Section %(name)s
     IfFileExists $INSTDIR\\factura.exe 0 +3
         CreateDirectory "$SMPROGRAMS\%(name)s"
         CreateShortCut "$SMPROGRAMS\%(name)s\PyFactura.lnk" "$INSTDIR\factura.exe" "" "$INSTDIR\factura.exe" 0
-  
+    %(register_com_servers_exe)s
 SectionEnd
 
 Section "Uninstall"
-    ;To Unregister a DLL
-    %(unregister_com_servers_dll)s
+
     %(unregister_com_servers_exe)s
     ;Delete Files
 
@@ -261,45 +255,45 @@ class NSISScript(object):
                     if len(self.version) < 128
                     else (self.version[:14] + self.version[-5:]),
                 ),
-                "install_vcredist": install_vcredist
-                if sys.version_info > (2, 7)
-                else "",
-                "register_com_servers_tlb": "".join(
-                    [
-                        register_com_server_tlb % comserver
-                        for comserver in self.comserver_files_tlb
-                    ]
-                ),
+                # ~ "install_vcredist": install_vcredist
+                # ~ if sys.version_info > (2, 7)
+                # ~ else "",
+                # ~ "register_com_servers_tlb": "".join(
+                    # ~ [
+                        # ~ register_com_server_tlb % comserver
+                        # ~ for comserver in self.comserver_files_tlb
+                    # ~ ]
+                # ~ ),
                 "register_com_servers_exe": "".join(
                     [
                         register_com_server_exe % comserver
                         for comserver in self.comserver_files_exe
                     ]
                 ),
-                "register_com_servers_dll": "".join(
-                    [
-                        register_com_server_dll % comserver
-                        for comserver in self.comserver_files_dll
-                    ]
-                ),
+                # ~ "register_com_servers_dll": "".join(
+                    # ~ [
+                        # ~ register_com_server_dll % comserver
+                        # ~ for comserver in self.comserver_files_dll
+                    # ~ ]
+                # ~ ),
                 "unregister_com_servers_exe": "".join(
                     [
                         unregister_com_server_exe % comserver
                         for comserver in self.comserver_files_exe
                     ]
                 ),
-                "unregister_com_servers_dll": "".join(
-                    [
-                        unregister_com_server_dll % comserver
-                        for comserver in self.comserver_files_dll
-                    ]
-                ),
-                "unregister_com_servers_exe": "".join(
-                    [
-                        unregister_com_server_tlb % comserver
-                        for comserver in self.comserver_files_tlb
-                    ]
-                ),
+                # ~ "unregister_com_servers_dll": "".join(
+                    # ~ [
+                        # ~ unregister_com_server_dll % comserver
+                        # ~ for comserver in self.comserver_files_dll
+                    # ~ ]
+                # ~ ),
+                # ~ "unregister_com_servers_exe": "".join(
+                    # ~ [
+                        # ~ unregister_com_server_tlb % comserver
+                        # ~ for comserver in self.comserver_files_tlb
+                    # ~ ]
+                # ~ ),
             }
         )
         
