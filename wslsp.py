@@ -184,6 +184,7 @@ class WSLSP(BaseWS):
     ]
     _reg_progid_ = "WSLSP"
     _reg_clsid_ = "{9750BBD4-FBC3-4FE7-8DE5-E193667D6813}"
+    _reg_class_spec_ = "pyafipws.wslsp.WSLSP"
 
     # Variables globales para BaseWS:
     HOMO = HOMO
