@@ -38,13 +38,13 @@ from pyafipws.nsis import build_installer, Target
 #import pyrece
 from pyafipws import wsaa
 from pyafipws import wsfev1, rece1, rg3685
-from pyafipws import wsfexv1, recex1
-from pyafipws import wsbfev1, receb1
-from pyafipws import wsmtx, recem
-from pyafipws import wsct, recet
+# ~ from pyafipws import wsfexv1, recex1
+# ~ from pyafipws import wsbfev1, receb1
+# ~ from pyafipws import wsmtx, recem
+# ~ from pyafipws import wsct, recet
 from pyafipws import wsfecred
 from pyafipws import ws_sr_padron
-# ~ from pyafipws import pyfepdf
+from pyafipws import pyfepdf
 # ~ from pyafipws import pyemail
 # ~ from pyafipws import pyi25
 from pyafipws import pyqr
@@ -59,20 +59,20 @@ from pyafipws import pyqr
 # ~ import wsremazucar
 # ~ from pyafipws import wscoc
 # ~ from pyafipws import wscdc
-from pyafipws import cot
+# ~ from pyafipws import cot
 # ~ from pyafipws import iibb
 # ~ from pyafipws import trazamed
 # ~ from pyafipws import trazaprodmed
 # ~ from pyafipws import trazarenpre
 # ~ from pyafipws import trazafito
 # ~ from pyafipws import trazavet
-from pyafipws import padron
+# ~ from pyafipws import padron
 # ~ from pyafipws import sired
 
 data_files = [
     (".", ["licencia.txt",]),
     ("conf", ["conf/rece.ini", "conf/geotrust.crt", "conf/afip_ca_info.crt", ]),
-    ("cache", glob.glob("cache/*")),
+    # ~ ("cache", glob.glob("cache/*")),
     ]
 
 # herramientas opcionales a compilar y empaquetar:
@@ -224,11 +224,8 @@ if 'wsfexv1' in globals():
 
 if 'wsbfev1' in globals():
     kwargs['windows'] += [Target(module=wsbfev1, script="wsbfev1.py", dest_base="wsbfev1_com")]
-    kwargs['com_server'] += [
-        Target(module=wsbfev1, modules="wsbfev1", create_exe=True, create_dll=True)
-        ]
     kwargs['console'] += [
-        Target(module=wsbfev1, script='wsbfev1.py', dest_base="wsbfev1_cli"), 
+        Target(module=wsbfev1, script='wsbfev1.py', dest_base="wsbfev1"), 
         Target(module=receb1, script='receb1.py'), 
         ]
     
@@ -292,9 +289,9 @@ if 'pyfepdf' in globals():
     kwargs['console'] += [
         Target(module=pyfepdf, script='pyfepdf.py', dest_base="pyfepdf_cli"), 
         ]
-    #kwargs['windows'] += [
-    #    Target(module=pyfepdf, script="pyfepdf.py", dest_base="pyfepdf_com"),
-    #    ]
+    kwargs['windows'] += [
+        Target(module=pyfepdf, script="pyfepdf.py", dest_base="pyfepdf_com"),
+        ]
     data_files += [
         WX_DLL, 
         ("plantillas", ["plantillas/logo.png", "plantillas/afip.png",
@@ -603,6 +600,12 @@ if 'sired' in globals():
         ]
     __version__ += "+sired_" + sired.__version__
     
+from pyafipws import com_test
+from pyafipws import checkreg
+kwargs['console'] += [
+        Target(module=com_test, script='com_test.py', dest_base="com_test"), 
+        Target(module=checkreg, script='checkreg.py', dest_base="checkreg"), 
+        ]
 
 # Workaround para que py2exe incluya módulos que por alguna razón los deja afuera
 from pyafipws import import_faltantes
@@ -626,7 +629,6 @@ except ImportError:
     pass
 
 # agrego tag de homologación (testing - modo evaluación):
-
 
 # agrego ejemplos
 ##if HOMO:
