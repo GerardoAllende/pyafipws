@@ -1184,6 +1184,7 @@ class FEPDF(object):
 
             # Facturas B Ley 27743
             cat_iva_rg = fact.get('categoria', fact.get('id_impositivo', '')).upper()
+            cat_iva_rg += fact.get('condicion_frente_iva','').upper()
             consumidor_final = ("CONS" in cat_iva_rg and "FINAL" in cat_iva_rg) or ("EXENTO" in cat_iva_rg)
 
             copias = {1: "Original", 2: "Duplicado", 3: "Triplicado"}
@@ -1272,13 +1273,14 @@ class FEPDF(object):
                         u"%s:" % self.tipos_doc[int(str(fact["tipo_doc"]))],
                     )
                     f.set("Cliente.Observaciones", fact.get("obs_comerciales"))
-                    f.set(
-                        "Cliente.PaisDestino",
-                        self.paises.get(
-                            fact.get("pais_dst_cmp"), fact.get("pais_dst_cmp")
+                    if fact['tipo_cbte'] in (19,20,21):
+                        f.set(
+                            "Cliente.PaisDestino",
+                            self.paises.get(
+                                fact.get("pais_dst_cmp"), fact.get("pais_dst_cmp")
+                            )
+                            or "",
                         )
-                        or "",
-                    )
 
                     if fact["moneda_id"]:
                         f.set("moneda_ds", self.monedas_ds.get(fact["moneda_id"], ""))
@@ -1463,6 +1465,9 @@ class FEPDF(object):
                                 ),
                             )
                             f.set("LeyendaIVA", "")
+                            f.set('IVA.L',"")
+                            f.set('IVALIQ',"")
+                            f.set('IMPIND',"")
 
                             # limpio etiquetas y establezco subtotal de iva liq.
                             for p in list(self.ivas_ds.values()):
@@ -1482,6 +1487,8 @@ class FEPDF(object):
                             f.set("NETO.L", "")
                             f.set("IVA.L", "")
                             f.set("LeyendaIVA", "")
+                            f.set('IVALIQ',"")
+                            f.set('IMPIND',"")
                             # Facturas B Ley 27743
                             if letra_fact == "B" and consumidor_final:
                                 if fact.get('impto_liq', fact.get('imp_iva')):
@@ -1491,6 +1498,7 @@ class FEPDF(object):
                                     f.set('IVA.L', "IVA Contenido (*est.):")
                                 f.set('IVALIQ', self.fmt_imp(iva_liq))
                                 f.set('LeyendaIVA', "Regimen de Transparencia Fiscal al Consumidor (Ley 27.743)")
+                                f.set('IMPIND.L','0,00')
                             for p in list(self.ivas_ds.values()):
                                 f.set("IVA%s.L" % p, "")
                                 f.set("NETO%s.L" % p, "")
