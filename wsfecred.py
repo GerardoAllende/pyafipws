@@ -1139,8 +1139,6 @@ REGISTROS = {
 
 
 def main():
-    safe_console()
-    global HOMO, DEBUG, XML, CONFIG_FILE
     if "--ayuda" in sys.argv:
         print(LICENCIA)
         print(AYUDA)
@@ -1155,8 +1153,11 @@ def main():
         # MS seems to like /automate to run the class factories.
         import win32com.server.localserver
 
-        win32com.server.localserver.serve([WSFECred._reg_clsid_])    
+        win32com.server.localserver.serve([WSFECred._reg_clsid_])
         sys.exit(0)
+
+    safe_console()
+    global HOMO, DEBUG, XML, CONFIG_FILE
 
     from pyafipws.utils import SafeConfigParser
 
