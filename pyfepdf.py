@@ -1756,13 +1756,26 @@ def main():
         # win32com.server.localserver.main()
         # start the server.
         win32com.server.localserver.serve([FEPDF._reg_clsid_])
+    elif "--ayuda" in sys.argv:
+        print(AYUDA)
+    elif "--licencia" in sys.argv:
+        print(LICENCIA)
+    elif "--formato" in sys.argv:
+        if "--dbf" in sys.argv:
+            from pyafipws.formatos import formato_dbf
+
+            formato_dbf.ayuda()
+        else:
+            from pyafipws.formatos import formato_txt
+
+            formato_txt.ayuda()
     else:
         from pyafipws.utils import SafeConfigParser
 
         DEBUG = "--debug" in sys.argv
         utils.safe_console()
 
-        # leeo configuración (primer argumento o rece.ini por defecto)
+        # leo configuración (primer argumento o rece.ini por defecto)
         if len(sys.argv) > 1 and not sys.argv[1].startswith("--"):
             CONFIG_FILE = sys.argv.pop(1)
         if DEBUG:
@@ -1772,25 +1785,6 @@ def main():
         config.read(CONFIG_FILE)
         conf_fact = dict(config.items("FACTURA"))
         conf_pdf = dict(config.items("PDF"))
-
-        if "--ayuda" in sys.argv:
-            print(AYUDA)
-            sys.exit(0)
-
-        if "--licencia" in sys.argv:
-            print(LICENCIA)
-            sys.exit(0)
-
-        if "--formato" in sys.argv:
-            if "--dbf" in sys.argv:
-                from pyafipws.formatos import formato_dbf
-
-                formato_dbf.ayuda()
-            else:
-                from pyafipws.formatos import formato_txt
-
-                formato_txt.ayuda()
-            sys.exit(0)
 
         fepdf = FEPDF()
 

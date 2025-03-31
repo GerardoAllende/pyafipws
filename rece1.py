@@ -478,6 +478,39 @@ def main():
     if "/debug" in sys.argv:
         DEBUG = True
         print("VERSION", __version__, "HOMO", HOMO)
+    
+    if "/formato" in sys.argv:
+        print("Formato:")
+        for msg, formato in [
+            ("Encabezado", ENCABEZADO),
+            ("Tributo", TRIBUTO),
+            ("Iva", IVA),
+            ("Comprobante Asociado", CMP_ASOC),
+            ("Opcionales", OPCIONAL),
+            ("Compradores", COMPRADOR),
+            ("Periodo Cbte Asoc", PERIODO_ASOC),
+            ('Actividades', ACTIVIDAD),
+        ]:
+            if not "/dbf" in sys.argv:
+                comienzo = 1
+                print("== %s ==" % msg)
+                for fmt in formato:
+                    clave, longitud, tipo = fmt[0:3]
+                    dec = len(fmt) > 3 and fmt[3] or (tipo == "I" and "2" or "")
+                    print(
+                        " * Campo: %-20s Posición: %3d Longitud: %4d Tipo: %s Decimales: %s"
+                        % (clave, comienzo, longitud, tipo, dec)
+                    )
+                    comienzo += longitud
+            else:
+                from pyafipws.formatos.formato_dbf import definir_campos
+
+                filename = "%s.dbf" % msg.lower()[:8]
+                print("==== %s (%s) ====" % (msg, filename))
+                claves, campos = definir_campos(formato)
+                for campo in campos:
+                    print(" * Campo: %s" % (campo,))
+        return
 
     config = abrir_conf(CONFIG_FILE, DEBUG)
     cert = config.get("WSAA", "CERT")
@@ -577,39 +610,6 @@ def main():
             print("AppServerStatus", ws.AppServerStatus)
             print("DbServerStatus", ws.DbServerStatus)
             print("AuthServerStatus", ws.AuthServerStatus)
-            return
-
-        if "/formato" in sys.argv:
-            print("Formato:")
-            for msg, formato in [
-                ("Encabezado", ENCABEZADO),
-                ("Tributo", TRIBUTO),
-                ("Iva", IVA),
-                ("Comprobante Asociado", CMP_ASOC),
-                ("Opcionales", OPCIONAL),
-                ("Compradores", COMPRADOR),
-                ("Periodo Cbte Asoc", PERIODO_ASOC),
-                ('Actividades', ACTIVIDAD),
-            ]:
-                if not "/dbf" in sys.argv:
-                    comienzo = 1
-                    print("== %s ==" % msg)
-                    for fmt in formato:
-                        clave, longitud, tipo = fmt[0:3]
-                        dec = len(fmt) > 3 and fmt[3] or (tipo == "I" and "2" or "")
-                        print(
-                            " * Campo: %-20s Posición: %3d Longitud: %4d Tipo: %s Decimales: %s"
-                            % (clave, comienzo, longitud, tipo, dec)
-                        )
-                        comienzo += longitud
-                else:
-                    from pyafipws.formatos.formato_dbf import definir_campos
-
-                    filename = "%s.dbf" % msg.lower()[:8]
-                    print("==== %s (%s) ====" % (msg, filename))
-                    claves, campos = definir_campos(formato)
-                    for campo in campos:
-                        print(" * Campo: %s" % (campo,))
             return
 
         # obteniendo el TA
