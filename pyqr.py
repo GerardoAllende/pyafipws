@@ -155,7 +155,6 @@ INSTALL_DIR = PyQR.InstallDir = get_install_dir()
 
 
 def main():
-    url = None
     if "--register" in sys.argv or "--unregister" in sys.argv:
         import pythoncom
         if TYPELIB:
@@ -183,6 +182,7 @@ def main():
     else:
 
         pyqr = PyQR()
+        url = None
 
         if "--datos" in sys.argv:
             args = sys.argv[sys.argv.index("--datos") + 1 :]
@@ -290,7 +290,7 @@ def main():
         else:
             os.startfile(pyqr.Archivo)
 
-    return url
+        return url
 
 if __name__ == "__main__":
     main()
