@@ -65,6 +65,7 @@ class PyEmail(object):
 
     _reg_progid_ = "PyEmail"
     _reg_clsid_ = "{2BEF3037-BF38-41AA-84A3-6F109D543FC9}"
+    _reg_class_spec_ = "pyafipws.pyemail.PyEmail"
 
     def __init__(self):
         self.Version = __version__

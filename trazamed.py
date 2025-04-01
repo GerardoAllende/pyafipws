@@ -173,6 +173,7 @@ class TrazaMed(BaseWS):
 
     _reg_progid_ = "TrazaMed"
     _reg_clsid_ = "{8472867A-AE6F-487F-8554-C2C896CFFC3E}"
+    _reg_class_spec_ = "pyafipws.trazamed.TrazaMed"
 
     if TYPELIB:
         _typelib_guid_ = "{F992EB7E-AFBD-41BB-B717-5693D3A2BADB}"
@@ -1222,17 +1223,6 @@ INSTALL_DIR = TrazaMed.InstallDir = get_install_dir()
 
 if __name__ == "__main__":
 
-    # ajusto el encoding por defecto (si se redirije la salida)
-    if not hasattr(sys.stdout, "encoding") or sys.stdout.encoding is None:
-        import codecs, locale
-
-        sys.stdout = codecs.getwriter(locale.getpreferredencoding())(
-            sys.stdout, "replace"
-        )
-        sys.stderr = codecs.getwriter(locale.getpreferredencoding())(
-            sys.stderr, "replace"
-        )
-
     if "--register" in sys.argv or "--unregister" in sys.argv:
         import pythoncom
 
@@ -1265,4 +1255,15 @@ if __name__ == "__main__":
         # start the server.
         win32com.server.localserver.serve([TrazaMed._reg_clsid_])
     else:
+        # ajusto el encoding por defecto (si se redirije la salida)
+        if not hasattr(sys.stdout, "encoding") or sys.stdout.encoding is None:
+            import codecs, locale
+
+            sys.stdout = codecs.getwriter(locale.getpreferredencoding())(
+                sys.stdout, "replace"
+            )
+            sys.stderr = codecs.getwriter(locale.getpreferredencoding())(
+                sys.stderr, "replace"
+            )
+
         main()
