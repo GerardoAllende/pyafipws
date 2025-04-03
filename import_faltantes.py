@@ -10,9 +10,6 @@
 # or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public License
 # for more details.
 
-# Based on MultipartPostHandler.py (C) 02/2006 Will Holcomb <wholcomb@gmail.com>
-# Ejemplos iniciales gracias a "Matias Gieco matigro@gmail.com"
-
 "Módulo para forzar la inclusión de módulos en library.zip con py2exe"
 from pyafipws import cot
 from pyafipws import wsfecred
