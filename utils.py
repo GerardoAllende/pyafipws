@@ -419,7 +419,13 @@ class BaseWS(object):
 
     @property
     def xml_response(self):
-        return self.XmlResponse
+        try:
+            return self.XmlResponse.decode('utf-8')
+        except UnicodeDecodeError:
+            try:
+                return response_content.decode('latin-1')
+            except:
+                return response_content.decode('utf-8', errors='ignore')
 
     def AnalizarXml(self, xml=""):
         "Analiza un mensaje XML (por defecto el ticket de acceso)"
