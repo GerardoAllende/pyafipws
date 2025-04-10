@@ -43,7 +43,7 @@ if 'py2exe' in sys.argv:
     #import wsmtx, recem
     #import wsct, recet
     #import wsfecred
-    #import ws_sr_padron
+    import ws_sr_padron
     import pyfepdf
     #import pyemail
     #import pyi25
@@ -148,7 +148,7 @@ if 'py2exe' in sys.argv:
             'includes': includes,
             'optimize': 0,
             'excludes': excludes,
-            'dll_excludes': ["mswsock.dll", "powrprof.dll", "KERNELBASE.dll", 
+            'dll_excludes': ["MSVCP90.dll", "mswsock.dll", "powrprof.dll", "KERNELBASE.dll", 
                          "tcl85.dll", "tk85.dll",
                          # Windows 8.1 DLL:
                          "CRYPT32.dll", "WLDAP32.dll",
