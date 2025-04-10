@@ -101,6 +101,9 @@ Section %(name)s
     IfFileExists $INSTDIR\\factura.exe 0 +3
         CreateDirectory "$SMPROGRAMS\%(name)s"
         CreateShortCut "$SMPROGRAMS\%(name)s\PyFactura.lnk" "$INSTDIR\factura.exe" "" "$INSTDIR\factura.exe" 0
+    IfFileExists $INSTDIR\\win32com\\gen_py\\dicts.dat 0 +2    
+        Delete "$INSTDIR\\win32com\\gen_py\\dicts.dat"
+    Delete "$INSTDIR\\cache\\*.pkl"
   
 SectionEnd
 
@@ -114,7 +117,7 @@ Section "Uninstall"
     Delete "$INSTDIR\Uninst.exe"
     DeleteRegKey HKEY_LOCAL_MACHINE "SOFTWARE\%(reg_key)s"
     DeleteRegKey HKEY_LOCAL_MACHINE "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\%(reg_key)s"
-
+    
 SectionEnd
 
 ;--------------------------------
@@ -164,15 +167,15 @@ unregister_com_server_tlb = """\
 """
 
 install_vcredist = r"""
-    ReadRegStr $0 HKLM "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{FF66E9F6-83E7-3A3E-AF14-8DE9A809A6A4}" "DisplayName"
-    StrCmp $0 "Microsoft Visual C++ 2008 Redistributable - x86 9.0.21022"  vcredist_ok vcredist_install
+    ;ReadRegStr $0 HKLM "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{FF66E9F6-83E7-3A3E-AF14-8DE9A809A6A4}" "DisplayName"
+    ;StrCmp $0 "Microsoft Visual C++ 2008 Redistributable - x86 9.0.21022"  vcredist_ok vcredist_install
  
-    vcredist_install:
-    File "vcredist_x86.exe" 	
-    DetailPrint "Installing Microsoft Visual C++ 2008 Redistributable"
-    ExecWait '"$INSTDIR\vcredist_x86.exe" /q' $0
-    Delete $INSTDIR\vcredist_x86.exe
-    vcredist_ok:
+    ;vcredist_install:
+    ;File "vcredist_x86.exe" 	
+    ;DetailPrint "Installing Microsoft Visual C++ 2008 Redistributable"
+    ;ExecWait '"$INSTDIR\vcredist_x86.exe" /q' $0
+    ;Delete $INSTDIR\vcredist_x86.exe
+    ;vcredist_ok:
     
 """
 
@@ -265,9 +268,14 @@ class NSISScript:
             'unregister_com_servers_dll': ''.join([unregister_com_server_dll % comserver for comserver in self.comserver_files_dll]),
             'unregister_com_servers_exe': ''.join([unregister_com_server_tlb % comserver for comserver in self.comserver_files_tlb]),
         })
+        ofi.close()
 
     def compile(self, pathname="base.nsi"):
-        os.startfile(pathname, 'compile')
+        nsis_exe = r'..\NSIS\makensis.exe'
+        if os.path.exists(nsis_exe):
+            os.system(nsis_exe + ' ' + pathname)
+        else:
+            os.startfile(pathname, "compile")
         
         
 class Target():
