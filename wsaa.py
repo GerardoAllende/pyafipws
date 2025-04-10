@@ -357,6 +357,8 @@ if __name__=="__main__":
     
     if '--register' in sys.argv or '--unregister' in sys.argv:
         import pythoncom
+        # avoid register InprocServer32 we only use local server
+        WSAA._reg_clsctx_ = pythoncom.CLSCTX_LOCAL_SERVER
         if TYPELIB: 
             if '--register' in sys.argv:
                 tlb = os.path.abspath(os.path.join(INSTALL_DIR, "typelib", "wsaa.tlb"))

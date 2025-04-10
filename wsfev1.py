@@ -1420,6 +1420,7 @@ if __name__ == '__main__':
 
     if "--register" in sys.argv or "--unregister" in sys.argv:
         import pythoncom
+        WSFEv1._reg_clsctx_ = pythoncom.CLSCTX_LOCAL_SERVER
         if TYPELIB: 
             if '--register' in sys.argv:
                 tlb = os.path.abspath(os.path.join(INSTALL_DIR, "typelib", "wsfev1.tlb"))
