@@ -55,7 +55,7 @@ class WSSrPadronA4(BaseWS):
         'actividad_monotributo', 'cat_iva', 'domicilios',
         'tipo_doc', 'nro_doc',
         'tipo_persona', 'estado', 'es_sucesion', 'impuestos', 'actividades',
-        'direccion', 'localidad', 'provincia', 'cod_postal',
+        'direccion', 'localidad', 'provincia', 'id_provincia', 'cod_postal',
         ]
 
     _reg_progid_ = "WSSrPadronA4"
@@ -88,6 +88,7 @@ class WSSrPadronA4(BaseWS):
         self.monotributo = self.actividad_monotributo = ""
         self.data = {}
         self.errores = []
+        self.id_provincia = -1
 
     def Dummy(self):
         "Obtener el estado de los servidores de la AFIP"
@@ -135,11 +136,13 @@ class WSSrPadronA4(BaseWS):
             domicilio = domicilios[0]
             self.direccion = domicilio.get("direccion", "")
             self.localidad = domicilio.get("localidad", "")  # no usado en CABA
-            self.provincia = PROVINCIAS.get(domicilio.get("idProvincia"), "")
+            self.id_provincia = domicilio.get("idProvincia")
+            self.provincia = PROVINCIAS.get(self.id_provincia, "")
             self.cod_postal = domicilio.get("codPostal")
         else:
             self.direccion = self.localidad = self.provincia = ""
             self.cod_postal = ""
+            self.id_provincia = -1
         # retrocompatibilidad:
         self.domicilios = domicilios
         self.domicilio = "%s - %s (%s) - %s" % (
@@ -229,11 +232,13 @@ class WSSrPadronA5(WSSrPadronA4):
         if domicilio:
             self.direccion = domicilio.get("direccion", "")
             self.localidad = domicilio.get("localidad", "")  # no usado en CABA
-            self.provincia = PROVINCIAS.get(domicilio.get("idProvincia"), "")
+            self.id_provincia = domicilio.get("idProvincia")
+            self.provincia = PROVINCIAS.get(self.id_provincia, "")
             self.cod_postal = domicilio.get("codPostal")
         else:
             self.direccion = self.localidad = self.provincia = ""
             self.cod_postal = ""
+            self.id_provincia = -1
         # retrocompatibilidad:
         self.domicilios = [domicilio]
         self.domicilio = "%s - %s (%s) - %s" % (
@@ -402,6 +407,10 @@ if __name__ == '__main__':
 
     if "--register" in sys.argv or "--unregister" in sys.argv:
         import win32com.server.register
+        import pythoncom
+        # avoid register InprocServer32 we only use local server
+        WSSrPadronA4._reg_clsctx_ = pythoncom.CLSCTX_LOCAL_SERVER
+        WSSrPadronA5._reg_clsctx_ = pythoncom.CLSCTX_LOCAL_SERVER
         win32com.server.register.UseCommandLine(WSSrPadronA4)
         win32com.server.register.UseCommandLine(WSSrPadronA5)
     else:
