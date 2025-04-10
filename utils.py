@@ -356,6 +356,14 @@ class BaseWS:
 
     @property
     def xml_response(self):
+        if isinstance(self.XmlResponse, bytes):
+            try:
+                return self.XmlResponse.decode('utf-8')
+            except UnicodeDecodeError:
+                try:
+                    return response_content.decode('latin-1')
+                except:
+                    return response_content.decode('utf-8', errors='ignore')
         return self.XmlResponse
 
     def AnalizarXml(self, xml=""):
