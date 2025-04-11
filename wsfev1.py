@@ -131,7 +131,7 @@ class WSFEv1(BaseWS):
         self.AuthServerStatus = result.get('AuthServer')
         return True
 
-    # los siguientes mótodos no estón decorados para no limpiar propiedades
+    # los siguientes métodos no están decorados para no limpiar propiedades
 
     def CrearFactura(self, concepto=1, tipo_doc=80, nro_doc="", tipo_cbte=1, punto_vta=0,
             cbt_desde=0, cbt_hasta=0, imp_total=0.00, imp_tot_conc=0.00, imp_neto=0.00,
@@ -1068,7 +1068,7 @@ def main():
         wsdl = WSDL
     proxy = ""
     wrapper = "" #"pycurl"
-    cacert = "conf/afip_ca_info.crt" # "aaa.crt" #"/home/reingart/.local/lib/python2.7/site-packages/certifi/cacert.pem" #
+    cacert = "conf/afip_ca_info.crt"
 
     ok = wsfev1.Conectar(cache, wsdl, proxy, wrapper, cacert)
     
@@ -1217,7 +1217,7 @@ def main():
             if '--rg5259' in sys.argv:
                 wsfev1.AgregarActividad(960990)
 
-            # agregar la factura creada internamente para solicitud mï¿½ltiple:
+            # agregar la factura creada internamente para solicitud múltiple:
             if "--multiple" in sys.argv:
                 wsfev1.AgregarFacturaX()
                 
