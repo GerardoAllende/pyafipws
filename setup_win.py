@@ -38,14 +38,14 @@ from pyafipws.nsis import build_installer, Target
 #import pyrece
 from pyafipws import wsaa
 from pyafipws import wsfev1, rece1, rg3685
-# ~ from pyafipws import wsfexv1, recex1
+from pyafipws import wsfexv1, recex1
 # ~ from pyafipws import wsbfev1, receb1
-# ~ from pyafipws import wsmtx, recem
+# ~ from pyafipws import wsmtx #, recem
 # ~ from pyafipws import wsct, recet
-from pyafipws import wsfecred
+# ~ from pyafipws import wsfecred
 from pyafipws import ws_sr_padron
 from pyafipws import pyfepdf
-# ~ from pyafipws import pyemail
+from pyafipws import pyemail
 # ~ from pyafipws import pyi25
 from pyafipws import pyqr
 # ~ from pyafipws import ws_sire
@@ -59,9 +59,9 @@ from pyafipws import pyqr
 # ~ import wsremazucar
 # ~ from pyafipws import wscoc
 # ~ from pyafipws import wscdc
-# ~ from pyafipws import cot
+from pyafipws import cot
 # ~ from pyafipws import iibb
-# ~ from pyafipws import trazamed
+from pyafipws import trazamed
 # ~ from pyafipws import trazaprodmed
 # ~ from pyafipws import trazarenpre
 # ~ from pyafipws import trazafito
@@ -195,7 +195,7 @@ if 'wsaa' in globals():
     kwargs['console'] += [Target(module=wsaa, script="wsaa.py", dest_base="wsaa")]
     if wsaa.TYPELIB:
         data_files.append(("typelib", ["typelib/wsaa.tlb"]))
-        
+    includes.append("pyafipws.wsaa")
     HOMO &= wsaa.HOMO
 
 if 'wsfev1' in globals():
@@ -207,7 +207,7 @@ if 'wsfev1' in globals():
         ]             
     if wsfev1.TYPELIB:
         data_files.append(("typelib", ["typelib/wsfev1.tlb"]))
-
+    includes.append("pyafipws.wsfev1")
     HOMO &= wsfev1.HOMO
 
 if 'wsfexv1' in globals():
@@ -219,7 +219,7 @@ if 'wsfexv1' in globals():
         Target(module=wsfexv1, script='wsfexv1.py', dest_base="wsfexv1_cli"), 
         Target(module=recex1, script='recex1.py'), 
         ]
-    
+    includes.append("pyafipws.wsfexv1")
     HOMO &= wsfexv1.HOMO
 
 if 'wsbfev1' in globals():
@@ -238,9 +238,9 @@ if 'wsmtx' in globals():
         ]
     kwargs['console'] += [
         Target(module=wsmtx, script='wsmtx.py', dest_base="wsmtx_cli"), 
-        Target(module=recem, script='recem.py'), 
+        # ~ Target(module=recem, script='recem.py'), 
         ]             
-    
+    includes.append("pyafipws.wsmtx")
     HOMO &= wsmtx.HOMO
 
 if 'wsct' in globals():
@@ -252,7 +252,7 @@ if 'wsct' in globals():
         Target(module=wsct, script='wsct.py', dest_base="wsct_cli"), 
         Target(module=recet, script='recet.py'), 
         ]
-    
+    includes.append("pyafipws.wsct")
     HOMO &= wsct.HOMO
 
 if 'wsfecred' in globals():
@@ -267,7 +267,7 @@ if 'wsfecred' in globals():
         ]
     data_files += [
         ]
-    
+    includes.append("pyafipws.wsfecred")
     HOMO &= wsfecred.HOMO
 
 if 'ws_sire' in globals():
@@ -279,7 +279,7 @@ if 'ws_sire' in globals():
         ]
     data_files += [
         ]
-    
+    includes.append("pyafipws.ws_sire")
     HOMO &= ws_sire.HOMO
 
 if 'pyfepdf' in globals():
@@ -298,12 +298,12 @@ if 'pyfepdf' in globals():
                         "plantillas/factura.csv",
                         "plantillas/recibo.csv"]),
         ]
-    
+    includes.append("pyafipws.pyfepdf")
     HOMO &= pyfepdf.HOMO
 
 if 'pyemail' in globals():
     kwargs['com_server'] += [
-        Target(module=pyemail, modules="pyemail", create_exe=False, create_dll=True),
+        Target(module=pyemail, modules="pyemail", create_exe=True, create_dll=True),
         ]
     kwargs['console'] += [
         Target(module=pyemail, script='pyemail.py', dest_base="pyemail"),
@@ -313,6 +313,7 @@ if 'pyemail' in globals():
         ]
     data_files += [
         ]
+    includes.append("pyafipws.pyemail")
     
 
 if 'pyi25' in globals():
@@ -327,7 +328,7 @@ if 'pyi25' in globals():
         ]
     data_files += [
         ]
-    
+    includes.append("pyafipws.pyi25")
 
 if 'pyqr' in globals():
     kwargs['com_server'] += [
@@ -341,7 +342,7 @@ if 'pyqr' in globals():
         ]
     data_files += [
         ]
-    
+    includes.append("pyafipws.pyqr")
         
 if 'wsctg' in globals():
     kwargs['com_server'] += [
@@ -350,7 +351,7 @@ if 'wsctg' in globals():
     kwargs['console'] += [
         Target(module=wsctg, script='wsctg.py', dest_base="wsctg_cli"),
         ]
-    
+    includes.append("pyafipws.wsctg")
     HOMO &= wsctg.HOMO
 
 if 'wslpg' in globals():
@@ -371,7 +372,7 @@ if 'wslpg' in globals():
             "plantillas/liquidacion_wslpg_ajuste_debcred.png",
             ]),
         ]
-   
+    includes.append("pyafipws.wslpg")
     HOMO &= wslpg.HOMO
 
 if 'wsltv' in globals():
@@ -386,7 +387,7 @@ if 'wsltv' in globals():
         ("plantillas", [ 
             ]),
         ]
-   
+    includes.append("pyafipws.wsltv")
     HOMO &= wsltv.HOMO
 
 if 'wslum' in globals():
@@ -399,7 +400,7 @@ if 'wslum' in globals():
     data_files += [
         ("conf", ["conf/wslum.ini"]),
         ]
-   
+    includes.append("pyafipws.wslum")
     HOMO &= wslum.HOMO
 
 if 'wslsp' in globals():
@@ -412,7 +413,7 @@ if 'wslsp' in globals():
     data_files += [
         ("conf", ["conf/wslsp.ini"]),
         ]
-  
+    includes.append("pyafipws.wslsp")
     HOMO &= wslsp.HOMO
 
 if 'wsremcarne' in globals():
@@ -425,7 +426,7 @@ if 'wsremcarne' in globals():
     data_files += [
         ("conf", ["conf/wsremcarne.ini"]),
         ]
-   
+    includes.append("pyafipws.wsremcarne")
     HOMO &= wsremcarne.HOMO
 
 if 'wsremharina' in globals():
@@ -438,7 +439,7 @@ if 'wsremharina' in globals():
     data_files += [
         ("conf", ["conf/wsremharina.ini"]),
         ]
-   
+    includes.append("pyafipws.wsremharina")
     HOMO &= wsremharina.HOMO
 
 if 'wsremazucar' in globals():
@@ -451,7 +452,7 @@ if 'wsremazucar' in globals():
     data_files += [
         ("conf", ["conf/wsremazucar.ini"]),
         ]
-   
+    includes.append("pyafipws.wsremazucar")
     HOMO &= wsremazucar.HOMO
 
 if 'wscoc' in globals():
@@ -461,7 +462,7 @@ if 'wscoc' in globals():
     kwargs['console'] += [
         Target(module=wscoc, script='wscoc.py', dest_base="wscoc_cli"),
         ]
-   
+    includes.append("pyafipws.wscoc")
     HOMO &= wscoc.HOMO
 
 if 'wscdc' in globals():
@@ -471,7 +472,7 @@ if 'wscdc' in globals():
     kwargs['console'] += [
         Target(module=wscdc, script='wscdc.py', dest_base="wscdc_cli"),
         ]
-   
+    includes.append("pyafipws.wscdc")
     HOMO &= wscdc.HOMO
 
 if 'ws_sr_padron' in globals():
@@ -485,7 +486,7 @@ if 'ws_sr_padron' in globals():
         Target(module=ws_sr_padron, script='ws_sr_padron.py', dest_base="ws_sr_padron_com"),
         ]
     __version__ += "+ws_sr_padron_" + ws_sr_padron.__version__
-
+    includes.append("pyafipws.ws_sr_padron")
     HOMO &= ws_sr_padron.HOMO
 
 if 'cot' in globals():
@@ -504,7 +505,7 @@ if 'cot' in globals():
         "datos/TB_20111111112_000000_20101229_000001.txt", 
         "datos/TB_20111111112_000000_20101229_000001.xml",
         ]), ("conf", ["conf/arba.crt"])]
-  
+    includes.append("pyafipws.cot")
     HOMO &= cot.HOMO
 
 if 'iibb' in globals():
@@ -515,20 +516,19 @@ if 'iibb' in globals():
         Target(module=iibb, script='iibb.py', dest_base="iibb_cli")
         ]
     data_files += [("conf", ["conf/arba.crt"])]
-  
+    includes.append("pyafipws.iibb")
     HOMO &= iibb.HOMO
     
 if 'trazamed' in globals():
     kwargs['com_server'] += [
-        Target(module=trazamed, modules="trazamed", create_exe=not trazamed.TYPELIB, create_dll=not trazamed.TYPELIB),
+        Target(module=trazamed, modules="trazamed", create_exe=True, create_dll=True),
         ]
     kwargs['console'] += [
         Target(module=trazamed, script='trazamed.py', dest_base="trazamed_cli"), 
         ]
-    if trazamed.TYPELIB:
-        kwargs['windows'] += [Target(module=trazamed, script="trazamed.py", dest_base="trazamed")]
-        data_files.append((".", ["trazamed.tlb"]))
-   
+    kwargs['windows'] += [Target(module=trazamed, script="trazamed.py", dest_base="trazamed_com")]
+    # ~ data_files.append((".", ["trazamed.tlb"]))
+    includes.append("pyafipws.trazamed")
     HOMO &= trazamed.HOMO
 
 if 'trazaprodmed' in globals():
@@ -538,7 +538,7 @@ if 'trazaprodmed' in globals():
     kwargs['console'] += [
         Target(module=trazaprodmed, script='trazaprodmed.py', dest_base="trazaprodmed_cli"), 
         ]
-   
+    includes.append("pyafipws.trazaprodmed")
     HOMO &= trazaprodmed.HOMO
 
 if 'trazarenpre' in globals():
@@ -551,7 +551,7 @@ if 'trazarenpre' in globals():
     if trazarenpre.TYPELIB:
         kwargs['windows'] += [Target(module=trazarenpre, script="trazarenpre.py", dest_base="trazarenpre")]
         data_files.append((".", ["trazarenpre.tlb"]))
-   
+    includes.append("pyafipws.trazarenpre")
     HOMO &= trazarenpre.HOMO
 
 if 'trazafito' in globals():
@@ -561,7 +561,7 @@ if 'trazafito' in globals():
     kwargs['console'] += [
         Target(module=trazafito, script='trazafito.py', dest_base="trazafito_cli"), 
         ]
-   
+    includes.append("pyafipws.trazafito")
     HOMO &= trazafito.HOMO
 
 if 'trazavet' in globals():
@@ -571,7 +571,7 @@ if 'trazavet' in globals():
     kwargs['console'] += [
         Target(module=trazavet, script='trazavet.py', dest_base="trazavet_cli"), 
         ]
-   
+    includes.append("pyafipws.trazavet")
     HOMO &= trazavet.HOMO
 
 if 'padron' in globals():
@@ -588,7 +588,7 @@ if 'padron' in globals():
         data_files += [(".", [
             "padron.db", 
             ])]
-   
+    includes.append("pyafipws.padron")
     #HOMO &= padron.HOMO
 
 if 'sired' in globals():
@@ -599,18 +599,13 @@ if 'sired' in globals():
         Target(module=sired, script='sired.py', dest_base="sired_cli"), 
         ]
     __version__ += "+sired_" + sired.__version__
+    includes.append("pyafipws.sired")
     
 from pyafipws import com_test
 from pyafipws import checkreg
 kwargs['console'] += [
         Target(module=com_test, script='com_test.py', dest_base="com_test"), 
         Target(module=checkreg, script='checkreg.py', dest_base="checkreg"), 
-        ]
-
-# Workaround para que py2exe incluya módulos que por alguna razón los deja afuera
-from pyafipws import import_faltantes
-kwargs['console'] += [
-        Target(module=import_faltantes, script='import_faltantes.py', dest_base="import_faltantes_cli"), 
         ]
 
 # custom installer:
