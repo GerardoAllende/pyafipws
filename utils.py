@@ -225,7 +225,16 @@ def inicializar_y_capturar_excepciones(func):
             # guardo datos de depuración
             if self.client:
                 self.XmlRequest = self.client.xml_request
-                self.XmlResponse = self.client.xml_response
+                if isinstance(self.client.xml_response, bytes):
+                    try:
+                        self.XmlResponse = self.client.xml_response.decode('utf-8')
+                    except UnicodeDecodeError:
+                        try:
+                            self.XmlResponse = self.client.xml_response.decode('latin-1')
+                        except:
+                            self.XmlResponse = self.client.xml_response.decode('utf-8', errors='ignore')
+                else: 
+                    self.XmlResponse = self.client.xml_response
 
     return capturar_errores_wrapper
 
@@ -419,13 +428,7 @@ class BaseWS(object):
 
     @property
     def xml_response(self):
-        try:
-            return self.XmlResponse.decode('utf-8')
-        except UnicodeDecodeError:
-            try:
-                return response_content.decode('latin-1')
-            except:
-                return response_content.decode('utf-8', errors='ignore')
+        return self.XmlResponse
 
     def AnalizarXml(self, xml=""):
         "Analiza un mensaje XML (por defecto el ticket de acceso)"
