@@ -154,7 +154,8 @@ XML_FORMAT = {
             'errores': str,
             
             'id': str,
-
+            "cancela_misma_moneda_ext": str,
+            "condicion_iva_receptor_id": int,
             },
         }],
     }
@@ -215,6 +216,8 @@ MAP_ENC = {
     "motivo": 'motivo',
     #'errores',
     "id": 'id',
+    "cancela_misma_moneda_ext": "cancela_misma_moneda_ext",
+    "condicion_iva_receptor_id": "condicion_iva_receptor_id",
     }
 
 # Mapeo de nombres internos ws vs facturador-plus (detalle)
