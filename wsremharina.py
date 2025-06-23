@@ -286,9 +286,9 @@ class WSRemHarina(BaseWS):
         receptor = {"cuitPaisReceptor": cuit_pais_receptor}
         if cuit_receptor:
             receptor["receptorNacional"] = {
-                "codDomReceptor": cod_dom_receptor,
-                "tipoDomReceptor": tipo_dom_receptor,
                 "cuitReceptor": cuit_receptor,
+                "tipoDomReceptor": tipo_dom_receptor,
+                "codDomReceptor": cod_dom_receptor,
             }
         else:
             receptor["receptorExtranjero"] = {
