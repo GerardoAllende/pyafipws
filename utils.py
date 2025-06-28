@@ -225,7 +225,16 @@ def inicializar_y_capturar_excepciones(func):
             # guardo datos de depuración
             if self.client:
                 self.XmlRequest = self.client.xml_request
-                self.XmlResponse = self.client.xml_response
+                if isinstance(self.client.xml_response, bytes):
+                    try:
+                        self.XmlResponse = self.client.xml_response.decode('utf-8')
+                    except UnicodeDecodeError:
+                        try:
+                            self.XmlResponse = self.client.xml_response.decode('latin-1')
+                        except:
+                            self.XmlResponse = self.client.xml_response.decode('utf-8', errors='ignore')
+                else: 
+                    self.XmlResponse = self.client.xml_response
 
     return capturar_errores_wrapper
 
@@ -574,16 +583,7 @@ class WebClient(object):
                 buf.write("Content-Type: %s\r\n" % contenttype)
                 # buffer += 'Content-Length: %s\r\n' % file_size
                 fd.seek(0)
-                datos = fd.read()
-                if type(datos) is bytes:
-                    try:
-                        datos = datos.decode('utf-8')
-                    except:
-                        try:
-                            datos = datos.decode('latin-1')
-                        except:
-                            datos = datos.decode('utf-8', errors='replace')
-                buf.write("\r\n" + datos + "\r\n")
+                buf.write("\r\n" + fd.read() + "\r\n")
         buf.write("--" + boundary + "--\r\n\r\n")
         buf = buf.getvalue()
         return boundary, buf
