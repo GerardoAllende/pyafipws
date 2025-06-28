@@ -229,10 +229,7 @@ def inicializar_y_capturar_excepciones(func):
                     try:
                         self.XmlResponse = self.client.xml_response.decode('utf-8')
                     except UnicodeDecodeError:
-                        try:
-                            self.XmlResponse = self.client.xml_response.decode('latin-1')
-                        except:
-                            self.XmlResponse = self.client.xml_response.decode('utf-8', errors='ignore')
+                        self.XmlResponse = self.client.xml_response.decode('latin-1')
                 else: 
                     self.XmlResponse = self.client.xml_response
 
@@ -587,11 +584,9 @@ class WebClient(object):
                 if type(datos) is bytes:
                     try:
                         datos = datos.decode('utf-8')
-                    except:
-                        try:
-                            datos = datos.decode('latin-1')
-                        except:
-                            datos = datos.decode('utf-8', errors='replace')
+                    except UnicodeDecodeError:
+                        #this should not fail
+                        datos = datos.decode('latin-1')
                 buf.write("\r\n" + datos + "\r\n")
         buf.write("--" + boundary + "--\r\n\r\n")
         buf = buf.getvalue()
