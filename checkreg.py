@@ -166,15 +166,12 @@ def delete_key(hive, key):
                 except OSError:
                     break
     except OSError:
-        print("Key does not exist:", key)
+        # ~ print("Key does not exist:", key)
         return
     winreg.DeleteKeyEx(hive, key)
 
 if __name__ == '__main__':
-    if "--print" in sys.argv:
-        from pprint import pprint
-        #regids = find_reg_clsids("pyafipws")
-        regids = {'COT': ['{7518B2CF-23E9-4821-BC55-D15966E15620}', 'pyafipws\\cot.py'],
+    regids = {'COT': ['{7518B2CF-23E9-4821-BC55-D15966E15620}', 'pyafipws\\cot.py'],
                  'IIBB': ['{2C7E29D2-0C99-49D8-B04B-A16B807BB123}', 'pyafipws\\iibb.py'],
                  'PadronAFIP': ['{6206DF5E-3EEF-47E9-A532-CD81EBBAF3AA}',
                                 'pyafipws\\padron.py'],
@@ -224,6 +221,10 @@ if __name__ == '__main__':
                                   'pyafipws\\ws_sr_padron.py'],
                  'WSSrPadronA5': ['{DF7447DD-EEF3-4E6B-A93B-F969B5075EC8}',
                                   'pyafipws\\ws_sr_padron.py']}
+                                  
+    if "--print" in sys.argv:
+        from pprint import pprint
+        #regids = find_reg_clsids("pyafipws")
         print("\nRegistro de 32 bits")
         for key, value in regids.items():
             a = get_com_registry_info(value[0], 32)
@@ -238,7 +239,7 @@ if __name__ == '__main__':
     elif "--clean" in sys.argv:
         if not is_admin():
             elevate_privileges() #relaunch with admin privs, then exit this process.
-        regids = find_reg_clsids("pyafipws")
+        # ~ regids = find_reg_clsids("pyafipws")
         for key, value in regids.items():
             clsid = value[0]
             progid = key
@@ -263,7 +264,4 @@ if __name__ == '__main__':
             delete_key(winreg.HKEY_CLASSES_ROOT, rf"Wow6432Node\AppID\{clsid}")
             
             delete_key(winreg.HKEY_CLASSES_ROOT, rf"{progid}")
-            
-            
-            
         input("Presione intro para salir")
