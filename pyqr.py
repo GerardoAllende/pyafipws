@@ -290,7 +290,5 @@ def main():
         else:
             os.startfile(pyqr.Archivo)
 
-        return url
-
 if __name__ == "__main__":
     main()
