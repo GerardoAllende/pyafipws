@@ -550,7 +550,7 @@ class WebClient(object):
         self.referer = None
 
     def multipart_encode(self, vars):
-        "Enconde form data (vars dict)"
+        "Encode form data (vars dict)"
         boundary = choose_boundary()
         if sys.version_info[0] < 3:
             buf = BytesIO()
