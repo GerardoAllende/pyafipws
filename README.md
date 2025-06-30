@@ -1,5 +1,5 @@
-pyafipws
-========
+pyafipws DEVELOP (Py 2.7)
+=========================
 
 This is my fork of the develop branch of pyafipws, this is based on Python 2.
 
