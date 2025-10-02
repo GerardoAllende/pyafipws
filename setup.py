@@ -321,6 +321,7 @@ if 'py2exe' in sys.argv:
             WX_DLL, 
             ("plantillas", ["plantillas/logo.png", "plantillas/afip.png",
                             "plantillas/factura.csv",
+							"plantillas/factura_qr.csv",
                             "plantillas/recibo.csv"]),
             ]
         __version__ += "+pyfepdf_" + pyfepdf.__version__
